@@ -1,0 +1,2 @@
+MIN_ROWS = 2
+MIN_COLUMNS = 2
