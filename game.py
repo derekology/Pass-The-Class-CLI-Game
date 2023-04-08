@@ -87,8 +87,8 @@ def game():
         print(f"Welcome to my game, {character['Name']}")
 
     while manage_character.is_alive(character=character):
-        if character_level.check_for_special_tile(board=game_board, character=character, boss=False):
-            playsound("res.wav")
+        if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
+            try_play_sound.try_play_sound(filename="./sounds/res.wav", action="Sound of you finding a study resource")
             character_level.apply_resource(character=character)
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
@@ -128,11 +128,12 @@ def game():
                 print(f"You (level {character['Level']}) have to complete a {encountered_foe['Name']} to pass "
                       f"the course (Difficulty level: {encountered_foe['Level']})!\n\n")
 
-                playsound("boss.wav")
+                try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of a final exam")
 
                 if foe_combat.fight_foe(character=character, foe=encountered_foe):
                     print("You passed the course! See you in Term 2.")
-                    playsound("win.wav")
+                    try_play_sound.try_play_sound(filename="./sounds/win.wav",
+                                                  action="Sound of you passing the Final exam")
                     break
 
             if manage_foes.check_for_foes():
@@ -157,13 +158,15 @@ def game():
                 if input(f"Type \"Y\" to make up an excuse to skip it: ").upper() == "Y"\
                         and manage_foes.escape_from_foe(character=character):
                     print("Your excused worked! Woo!")
-                    playsound("woo.wav")
+                    try_play_sound.try_play_sound(filename="./sounds/woo.wav",
+                                                  action="Sound of cheering")
 
                 else:
                     print("Let's get to it, I guess...\n")
                     if foe_combat.fight_foe(character=character, foe=encountered_foe) and \
                             (random.random() * character["Luck"]) > 0.80:
-                        playsound("res.wav")
+                        try_play_sound.try_play_sound(filename="./sounds/res.wav",
+                                                      action="Sound of you finding a study resource")
                         character_level.apply_resource(character=character)
                         print(f"end of combat: {[x[3] for x in inspect.stack()]}")
 
@@ -180,7 +183,7 @@ def game():
  ▐█▀·.▐█▌.▐▌▐█▄█▌    ██▌.▐█ ▪▐▌▐█▌▐█▌▐▌▐█▄▄▌██. ██          
   ▀ •  ▀█▄▀▪ ▀▀▀     ▀▀▀  ▀  ▀ ▀▀▀.▀▀▀  ▀▀▀ ▀▀▀▀▀•  ▀  ▀  ▀ 
         """)
-        playsound("lose.wav")
+        try_play_sound.try_play_sound(filename="./sounds/res.wav", action="Sound of you failing the class")
         print("Summer's too hot to spend outside the classroom anyways...")
 
 
