@@ -72,10 +72,22 @@ def check_for_boss(character: dict) -> bool:
     :precondition: character must contain a "Level" key associated with an integer greater than or equal to zero
     :postcondition: determines whether a foe is a boss-level enemy as a function of the character's level
     :return: whether foe is a boss-level enemy as a boolean
+    :raises TypeError: if character is not a dictionary
+    :raises KeyError: if character dictionary does not contain a 'Level' key
+    :raises ValueError: if character dictionary 'Level' value is not an integer greater than or equal to zero
     """
-    boss_chance = (random.random() * character["Level"]) ** 2
+    if type(character) is not dict:
+        raise TypeError("Character must be a dictionary.")
 
-    return True if boss_chance > 3 else False
+    elif "Level" not in character.keys():
+        raise KeyError("Character dictionary must contain 'Level' key")
+
+    elif type(character["Level"]) is not int or character["Level"] < 0:
+        raise ValueError("Character's level must be an integer greater than or equal to zero.")
+
+    boss_chance = (random.random() * character["Level"]) * 3
+
+    return boss_chance > 3
 
 
 def escape_from_foe(character: dict) -> bool:
