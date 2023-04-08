@@ -6,6 +6,9 @@ def load_game() -> tuple:
     """
     Load a saved game file.
 
+    :postcondition: asks user for name of saved character
+    :postcondition: prompts use for another name if save data not found
+    :postcondition: opens saved character file and parses data into game variables
     :return: the character and board save state as a tuple
     """
     character_name = input("What is your character name?: ")
