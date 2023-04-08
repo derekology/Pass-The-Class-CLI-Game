@@ -73,6 +73,9 @@ def game():
         for coordinate in loaded_data[3]:
             game_board[tuple(coordinate)] = "['R']"
 
+        for coordinate in loaded_data[4]:
+            game_board[tuple(coordinate)] = "['B']"
+
         print(f"Welcome back to my game, {character['Name']}")
 
     else:
