@@ -3,6 +3,7 @@ Derek Woo
 A01351415
 """
 from character_management import HP_UPGRADE_AMOUNT, STRENGTH_UPGRADE_AMOUNT, LUCK_UPGRADE_AMOUNT
+from playsound import playsound
 
 
 def calculate_character_level(character: dict) -> None:
@@ -110,6 +111,7 @@ def apply_resource(character: dict) -> None:
     :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
     :postcondition: prompts for user's desired skill attribute as one of "Health", "Strength", or "Luck"
     :postcondition: increases the character's selected skill attribute by specified amount
+    :postcondition: plays congratulatory sound after upgrade is applied
     :raises TypeError: if character is not a dictionary
     :raises KeyError: if "Current HP", "Strength", or "Luck" key does not exist in character dictionary
     :raises ValueError: if " Current HP", "Strength", or "Luck" value is not an integer greater than or equal to zero
@@ -135,6 +137,8 @@ def apply_resource(character: dict) -> None:
 
         else:
             character["Luck"] += LUCK_UPGRADE_AMOUNT
+
+        playsound("lev.wav")
 
 
 def main():
