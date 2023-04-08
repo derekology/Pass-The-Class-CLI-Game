@@ -55,6 +55,46 @@ def is_alive(character: dict, alive_message=None, not_alive_message=None) -> boo
         return False
 
 
+def print_character_stats(character: dict) -> None:
+    """
+    Print character name, current health, strength, and luck.
+
+    :param character: a dictionary representing the character's current status
+    :precondition: character must contain a "Name" key associated with a non-empty string
+    :precondition: character must contain a "Level" key associated with an integer greater than or equal to zero
+    :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
+    :precondition: character must contain a "Strength" key associated with an integer greater than or equal to zero
+    :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
+    :postcondition: prints character's name, health points, strength, and luck attributes
+    :raises KeyError: if character dictionary does not contain a "Name" key
+    :raises KeyError: if character dictionary does not contain a "Level" key
+    :raises KeyError: if character dictionary does not contain a "Current HP" key
+    :raises KeyError: if character dictionary does not contain a "Strength" key
+    :raises KeyError: if character dictionary does not contain a "Luck" key
+    :raises TypeError: if character dictionary's "Name" value is not a non-empty string
+    :raises ValueError: if character dictionary's "Level" value is not positive nonzero integer
+    :raises ValueError: if character dictionary's "Current HP" value is not positive nonzero integer
+    :raises ValueError: if character dictionary's "Strength" value is not positive nonzero integer
+    :raises ValueError: if character dictionary's "Luck" value is not positive nonzero integer
+    """
+    if type(character) is not dict:
+        raise TypeError("Character must be a dictionary.")
+
+    elif [key for key in ["Name", "Level", "Current HP", "Strength", "Luck"] if key not in character.keys()]:
+        raise KeyError("Character dictionary must contain 'Current HP', 'Strength', and 'Luck' keys")
+
+    elif type(character["Name"]) is not str or len(character["Name"]) == 0:
+        raise TypeError("Character name must be a non-empty string.")
+
+    elif [value for key, value in character.items() if key in ["Level", "Current HP", "Strength", "Luck"]
+            and (type(value) is not int or value < 0)]:
+        raise ValueError("Character Level, Health, Strength, and Luck must be integers greater than or equal to zero")
+
+    else:
+        print(f"{character['Name']} (Level {character['Level']})\nHealth: {character['Current HP']}\n"
+              f"Strength: {character['Strength']}\nLuck:{character['Luck']}")
+
+
 def main():
     """
     Drive the program.
