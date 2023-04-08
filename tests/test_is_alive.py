@@ -6,6 +6,8 @@ A01351415
 
 from unittest import TestCase
 from character_management.manage_character import is_alive
+from unittest.mock import patch
+import io
 
 
 class TestIsAlive(TestCase):
@@ -28,3 +30,19 @@ class TestIsAlive(TestCase):
         test_character = {"Current HP": -5}
         actual = is_alive(character=test_character)
         self.assertFalse(actual)
+
+    @patch("sys.stdout", new_callable=io.StringIO)
+    def test_is_alive_with_alive_message(self, mock_output):
+        test_character = {"Current HP": 5}
+        is_alive(character=test_character, alive_message="Test Alive Message")
+        expected = "Test Alive Message\n"
+        actual = mock_output.getvalue()
+        self.assertEqual(expected, actual)
+
+    @patch("sys.stdout", new_callable=io.StringIO)
+    def test_is_alive_with_not_alive_message(self, mock_output):
+        test_character = {"Current HP": 0}
+        is_alive(character=test_character, not_alive_message="Test Not Alive Message")
+        expected = "Test Not Alive Message\n"
+        actual = mock_output.getvalue()
+        self.assertEqual(expected, actual)
