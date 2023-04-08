@@ -42,6 +42,10 @@ def locate_character(board: dict, character: dict) -> None:
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
     :precondition: values of "X-coordinate" and "Y-coordinate" keys in character must exist as coordinates in board
     :postcondition: updates the value of the character's game board coordinates key to ['P']
+    :raises TypeError: if either board or character, or both, are not dictionaries
+    :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
+    :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
+    :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
 
     >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
@@ -54,9 +58,20 @@ def locate_character(board: dict, character: dict) -> None:
     >>> test_board
     {(0, 0): '[   ]', (1, 0): "['P']"}
     """
-    location = (character["X-coordinate"], character["Y-coordinate"])
+    if type(board) is not dict or type(character) is not dict:
+        raise TypeError("Character and game board must both be dictionaries.")
 
-    board[location] = "['P']"
+    elif type(character["X-coordinate"]) is not int or type(character["Y-coordinate"]) is not int:
+        raise TypeError("Character's 'X-coordinate' and 'Y-coordinate' values must be integers")
+
+    elif character["X-coordinate"] not in [x for (x, _) in board] or \
+            character["Y-coordinate"] not in [y for (_, y) in board]:
+        raise ValueError("Character's coordinates must be on the game board.")
+
+    else:
+        location = (character["X-coordinate"], character["Y-coordinate"])
+
+        board[location] = "['P']"
 
 
 def main():
