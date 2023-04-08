@@ -14,7 +14,7 @@ def make_character() -> dict:
     :return: a level 1 character as a dictionary at coordinates (0, 0) with 5 health points, 1 Luck point,
              and 1 Strength point
     """
-    char_name = input("What is your character name?: ")
+    char_name = input("What should your character's name be?: ")
 
     while len(char_name) == MIN_CHARACTER_NAME_LENGTH:
         char_name = input("Name cannot be blank. Try again: ")
