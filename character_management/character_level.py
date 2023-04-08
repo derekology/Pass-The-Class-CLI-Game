@@ -78,7 +78,24 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
         search_target = "['B']" if boss else "['R']"
         character_location = (character["X-coordinate"], character["Y-coordinate"])
 
-    return board[character_location] == "['R']"
+        return board[character_location] == search_target
+
+
+def get_upgrade_choice() -> str:
+    """
+    Ask user for their choice of upgrade in Health, Strength, or Luck attributes.
+
+    :postcondition: prompts for user's desired upgrade attribute as one of: "Reeses Pieces", "Smarts", or "Luck"
+    :postcondition: re-issues prompt if user enters an invalid attribute
+    :return: the user's desired upgrade attribute as a string
+    """
+    user_choice = input(f"You found a study resource!\nWhat would you like to it to?\n\n"
+                        f"(H) Reeses Pieces + 3\n(S) Smarts + 1\n(L) Luck + 1\n\nYour choice: ").capitalize()
+
+    while user_choice not in ["Reeses Pieces", "Smarts", "Luck", "H", "S", "L"]:
+        user_choice = input("Unknown attribute. Please pick one of: Reeses Pieces, Smarts, or Luck: ").capitalize()
+
+    return user_choice
 
 
 def apply_resource(character: dict) -> None:
