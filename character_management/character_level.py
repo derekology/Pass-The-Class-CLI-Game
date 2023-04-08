@@ -110,24 +110,31 @@ def apply_resource(character: dict) -> None:
     :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
     :postcondition: prompts for user's desired skill attribute as one of "Health", "Strength", or "Luck"
     :postcondition: increases the character's selected skill attribute by specified amount
+    :raises TypeError: if character is not a dictionary
+    :raises KeyError: if "Current HP", "Strength", or "Luck" key does not exist in character dictionary
+    :raises ValueError: if " Current HP", "Strength", or "Luck" value is not an integer greater than or equal to zero
     """
-    user_choice = input(f"You found a resource!\nWhat would you like to it to?\n\n"
-                        f"(H) Health + 3\t\t(Current: {character['Current HP']})\n"
-                        f"(S) Strength + 1\t(Current: {character['Strength']})\n"
-                        f"(L) Luck + 1\t\t(Current: {character['Luck']})\n\n"
-                        "Your choice: ").capitalize()
+    if type(character) is not dict:
+        raise TypeError("Character must be a dictionary.")
 
-    while user_choice not in ["Health", "Strength", "Luck", "H", "S", "L"]:
-        user_choice = input("Unknown attribute. Please pick one of: Health, Strength, or Luck: ").capitalize()
+    elif [key for key in ["Current HP", "Strength", "Luck"] if key not in character.keys()]:
+        raise KeyError("Character dictionary must contain 'Current HP', 'Strength', and 'Luck' keys")
 
-    if user_choice == "Health" or user_choice == "H":
-        character["Current HP"] += HP_UPGRADE_AMOUNT
-
-    elif user_choice == "Strength" or user_choice == "S":
-        character["Strength"] += STRENGTH_UPGRADE_AMOUNT
+    elif [value for key, value in character.items() if key in ["Current HP", "Strength", "Luck"]
+            and (type(value) is not int or value < 0)]:
+        raise ValueError("Character Health, Strength, and Luck values must be integers greater than or equal to zero")
 
     else:
-        character["Luck"] += LUCK_UPGRADE_AMOUNT
+        upgrade_attribute = get_upgrade_choice()
+
+        if upgrade_attribute == "Health" or upgrade_attribute == "H":
+            character["Current HP"] += HP_UPGRADE_AMOUNT
+
+        elif upgrade_attribute == "Strength" or upgrade_attribute == "S":
+            character["Strength"] += STRENGTH_UPGRADE_AMOUNT
+
+        else:
+            character["Luck"] += LUCK_UPGRADE_AMOUNT
 
 
 def main():
