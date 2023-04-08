@@ -60,11 +60,7 @@ def create_foe(character: dict, boss: bool = False) -> dict:
     print(foe_health)
     print(foe_strength)
 
-    foe_level = (foe_health + foe_strength) // 5
-
-    foe = {"Name": foe_type, "Current HP": foe_health, "Strength": foe_strength, "Level": foe_level, "Luck": 2}
-
-    return foe
+    return {"Name": foe_type, "Current HP": foe_health, "Strength": foe_strength, "Level": foe_level, "Luck": foe_luck}
 
 
 def check_for_boss(character: dict) -> bool:
