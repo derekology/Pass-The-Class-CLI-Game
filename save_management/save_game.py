@@ -12,7 +12,9 @@ def save_game(character: dict, board: dict) -> None:
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
     :precondition: board must be a dictionary containing tuples of two positive integers as keys and strings as values
     :precondition: board must have zero or more resource tiles marked with "['R']" as its coordinate's value
-    :postcondition: creates or overwrites file at savegame/{character_name}.save with character and board state
+    :precondition: board must have zero or more resource tiles marked with "['B']" as its coordinate's value
+    :postcondition: saves character state and location of resources as a JSON-formatted file
+    :postcondition: creates or overwrites file at savegame/{character_name}.save
     :postcondition: prints an informative message if game state is successfully saved
     """
     character_name = character["Name"]
