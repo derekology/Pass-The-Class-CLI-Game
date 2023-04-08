@@ -22,10 +22,24 @@ def calculate_damage(fighter: dict) -> int:
     :precondition: fighter must contain a "Luck" key associated with an integer greater than or equal to zero
     :postcondition: calculates the amount of damage dealt in one turn as a function of fighter's strength and luck
     :return: the amount of damage dealt in one combat turn as an integer
+    :raises TypeError: if fighter is not a dictionary
+    :raises KeyError: if fighter dictionary does not contain "Strength" or "Luck" key, or both
+    :raises ValueError: if fighter "Strength" or "Luck" values are not positive nonzero integers
     """
-    raw_damage = int(fighter["Strength"] * 0.8 + random.randint(0, fighter["Luck"]) * 0.6)
+    if type(fighter) is not dict:
+        raise TypeError("Fighter must be a dictionary.")
 
-    return max(0, raw_damage)
+    elif [key for key in ["Strength", "Luck"] if key not in fighter.keys()]:
+        raise KeyError("Fighter dictionary must contain 'Strength', and 'Luck' keys")
+
+    elif [value for key, value in fighter.items() if key in ["Strength", "Luck"]
+            and (type(value) is not int or value < 0)]:
+        raise ValueError("Fighter 'Strength' and 'Luck' values must be integers greater than or equal to zero")
+
+    else:
+        raw_damage = int(fighter["Strength"] * 0.8 + random.randint(0, fighter["Luck"]) * 0.6)
+
+        return max(0, raw_damage)
 
 
 def fight_foe(character: dict, foe: dict) -> bool:
