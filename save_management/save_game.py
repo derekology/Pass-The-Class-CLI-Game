@@ -22,15 +22,17 @@ def save_game(character: dict, board: dict) -> None:
     with open(f"savegames/{character_name}.save", "w") as save_file:
         character_data = character
 
-        board_resources = [coordinate for coordinate, space in board.items() if space == "['R']"]
-        board_data = {"rows": max(coordinates[0] for coordinates in board.keys()) + 1,
-                      "columns": max(coordinates[1] for coordinates in board.keys()) + 1,
-                      "resource": board_resources}
+    board_resources = [coordinate for coordinate, space in board.items() if space == "['R']"]
+    board_bosses = [coordinate for coordinate, space in board.items() if space == "['B']"]
+    board_data = {"rows": max(coordinates[0] for coordinates in board.keys()) + 1,
+                  "columns": max(coordinates[1] for coordinates in board.keys()) + 1,
+                  "resource": board_resources,
+                  "boss": board_bosses}
 
-        save_data = {"character": character_data, "board": board_data}
-        json.dump(save_data, save_file)
+    save_data = {"character": character_data, "board": board_data}
+    json.dump(save_data, save_file)
 
-        print("Game successfully saved.")
+    print("Game successfully saved.")
 
 
 def main():
