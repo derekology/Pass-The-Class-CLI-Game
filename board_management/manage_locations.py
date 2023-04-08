@@ -5,6 +5,7 @@ A01351415
 
 
 import random
+from combat_management import manage_foes
 
 
 def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) -> None:
