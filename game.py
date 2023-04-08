@@ -88,7 +88,8 @@ def game():
         print(f"Welcome to my game, {character['Name']}")
 
     while manage_character.is_alive(character=character):
-        if character_level.check_for_resources(board=game_board, character=character):
+        if character_level.check_for_special_tile(board=game_board, character=character, boss=False):
+            playsound("res.wav")
             character_level.apply_resource(character=character)
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
