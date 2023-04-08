@@ -83,7 +83,7 @@ def game():
         columns = 5
         game_board = manage_board.make_board(rows=rows, columns=columns)
         character = manage_character.make_character()
-        manage_locations.mark_resources(board=game_board, character=character)
+        manage_locations.find_special_tiles(board=game_board, character=character)
 
         print(f"Welcome to my game, {character['Name']}")
 
@@ -96,7 +96,8 @@ def game():
         if [space for space in game_board.values()].count("['R']") == 0:
             print("Finding more resources...")
             resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
-            manage_locations.mark_resources(board=game_board, character=character, special_tiles=resource_count)
+            game_board = manage_board.make_board(rows=rows, columns=columns)
+            manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
 
             save = input("Type 'Y' to save your game: ").upper()
             if save == "Y":
