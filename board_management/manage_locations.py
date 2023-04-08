@@ -7,13 +7,13 @@ A01351415
 import random
 
 
-def mark_resources(board: dict, character: dict, special_tiles: int = 3) -> None:
+def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) -> None:
     """
-    Mark a specified number of tiles on a game board.
+    Mark a specified number of random tiles on a game board.
 
     :param board: a dictionary representing a coordinate-based game board
     :param character: a dictionary representing the character's status
-    :param special_tiles: a positive integer representing the number of resources to create (default is 3)
+    :param resource_tiles: a positive integer representing the number of resources to create (default is 3)
     :precondition: board must be a dictionary containing tuples of two positive integers as keys and strings as values
     :precondition: character must be a dictionary containing an "X-coordinate" key associated with an integer
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
