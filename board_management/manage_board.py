@@ -15,19 +15,24 @@ def draw_board(board: dict, columns: int) -> None:
     :precondition: board must be a dictionary containing tuples of two positive integers as keys and strings as values
     :precondition: columns must be an integer greater than or equal to two
     :postcondition: prints three line breaks, then a game board of values with the specified number of columns
-    :raises TypeError: if board does not contain tuples of length
+    :raises TypeError: if board is not a dictionary
+    :raises TypeError: if columns is not an integer
+    :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
+    :raises ValueError: columns is not greater than or equal to two
 
     >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]", (0, 1): "[   ]", (1, 1): "[   ]"}
     >>> draw_board(board=test_board, columns=2)
     """
+    if type(board) is not dict or type(columns) is not int:
+        raise TypeError("Game board must be a dictionary and columns must be an integer")
 
-    if [value for value in board.values() if type(value) is not str] or \
+    elif [value for value in board.values() if type(value) is not str] or \
             [key for key in board.keys() if ((type(key) is not tuple) or (len(key) != 2) or
                                              ([coordinate for coordinate in key if type(coordinate) is not int]))]:
         raise TypeError("Game board must contain tuples of two positive integers as keys and strings as values.")
 
-    if columns < MIN_COLUMNS:
-        raise ValueError(F"Game board must have {MIN_COLUMNS} or more columns.")
+    elif columns < MIN_COLUMNS:
+        raise ValueError(f"Game board must have {MIN_COLUMNS} or more columns.")
 
     counter = 0
     game_spaces = [space for space in board.values()]
