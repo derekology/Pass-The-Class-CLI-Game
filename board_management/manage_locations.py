@@ -19,11 +19,23 @@ def mark_resources(board: dict, character: dict, special_tiles: int = 3) -> None
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
     :precondition: values of "X-coordinate" and "Y-coordinate" keys in character must exist as coordinates in board
     :precondition: special_tiles must be a positive integer greater than or equal to zero
-    :precondition: special_tiles must be less than the total number of coordinates on board
-    :postcondition: marks the specified number of tiles on random non-character coordinates of a game board with "['R']"
+    :precondition: special_tiles must be less than the total number of non-character coordinates on board minus one
+    :postcondition: checks if a boss exists on the game board and if so, marks one random coordinate with ['B']
+    :postcondition: marks the remaining number of tiles on random non-character coordinates as a resource with ['R']
+    :raises TypeError: if either board or character, or both, are not dictionaries
+    :raises TypeError: if special_tiles is not an integer
+    :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
+    :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
+    :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
+    :raises ValueError: if special_tiles is less than zero or greater than the number of non-character game tiles
     """
-    game_spaces = [space for space in board.keys()]
-    game_spaces.remove((character['X-coordinate'], character['Y-coordinate']))
+    if type(character["X-coordinate"]) is not int or type(character["Y-coordinate"]) is not int \
+            or type(resource_tiles) is not int:
+        raise TypeError("Special tiles and Character's 'X-coordinate' and 'Y-coordinate' values must be integers")
+
+    elif character["X-coordinate"] not in [x for (x, _) in board] or \
+            character["Y-coordinate"] not in [y for (_, y) in board]:
+        raise ValueError("Character's coordinates must be on the game board.")
 
     resource_locations = random.sample(game_spaces, k=special_tiles)
 
