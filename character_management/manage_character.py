@@ -59,9 +59,9 @@ def is_alive(character: dict, alive_message=None, not_alive_message=None) -> boo
             print(alive_message) if alive_message else None
             return True
 
-    else:
-        print(not_alive_message)
-        return False
+        else:
+            print(not_alive_message) if not_alive_message else None
+            return False
 
 
 def print_character_stats(character: dict) -> None:
