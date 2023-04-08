@@ -2,6 +2,8 @@
 Derek Woo
 A01351415
 """
+
+
 from character_management import HP_UPGRADE_AMOUNT, STRENGTH_UPGRADE_AMOUNT, LUCK_UPGRADE_AMOUNT
 from playsound import playsound
 
