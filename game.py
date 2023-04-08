@@ -106,7 +106,8 @@ def game():
         character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
         manage_board.draw_board(board=game_board, columns=columns)
-        print(f"{character['Name']} (Level {character['Level']})\nHealth: {character['Current HP']}")
+        print("")
+        manage_character.print_character_stats(character=character)
 
         direction = character_movement.get_user_choice()
         valid_move = character_movement.validate_move(board=game_board, character=character, direction=direction)
