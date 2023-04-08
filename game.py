@@ -99,8 +99,7 @@ def game():
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
 
-            save = input("Type 'Y' to save your game: ").upper()
-            if save == "Y":
+            if input("Type 'Y' to save your game: ").upper() == "Y":
                 save_game.save_game(character=character, board=game_board)
 
         character_level.calculate_character_level(character=character)
