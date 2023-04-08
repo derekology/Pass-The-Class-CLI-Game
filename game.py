@@ -14,6 +14,8 @@ from combat_management import manage_foes
 from combat_management import foe_combat
 from save_management import load_game
 from save_management import save_game
+from utilities import check_for_special_tile
+from utilities import try_play_sound
 import inspect
 
 
@@ -115,7 +117,7 @@ def game():
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
             character_movement.move_character(character=character, direction=direction)
 
-            if character_level.check_for_special_tile(board=game_board, character=character, boss=True):
+            if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=True):
                 encountered_foe = manage_foes.create_foe(character=character, boss=True)
                 print(r"""
 ███████╗██╗███╗   ██╗ █████╗ ██╗         ███████╗██╗  ██╗ █████╗ ███╗   ███╗
