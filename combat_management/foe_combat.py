@@ -49,18 +49,35 @@ def fight_foe(character: dict, foe: dict) -> bool:
     :param character: a dictionary representing the character's current status
     :param foe: a dictionary representing the foe's current status
     :precondition: character must be a dictionary
+    :precondition: character must contain a "Name" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Strength" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
     :precondition: foe must be a dictionary
-    :precondition: foe dictionary must contain a "Current HP" key associated with an integer
+    :precondition: foe must contain a "Current HP" key associated with an integer
     :precondition: foe must contain a "Strength" key associated with an integer greater than or equal to zero
     :precondition: foe must contain a "Luck" key associated with an integer greater than or equal to zero
     :postcondition: alternates combat rounds between character and foe, reducing damage as calculated until either dies
     :return: whether the character is still alive as a boolean
+    :raises TypeError: if character is not a dictionary
+    :raises KeyError: if character dictionary does not contain "Name", "Current HP", "Strength" or "Luck" key
+    :raises ValueError: if character "Current HP", "Strength" or "Luck" values are not positive nonzero integers
+    :raises TypeError: if foe is not a dictionary
+    :raises KeyError: if foe dictionary does not contain "Current HP", "Strength" or "Luck" key, or both
+    :raises ValueError: if foe "Current HP", "Strength" or "Luck" values are not positive nonzero integers
     """
-    belligerents = (character, foe)
-    switch_turns = itertools.cycle((0, 1))
+    keys_needed = ["Current HP", "Strength", "Luck"]
+
+    if type(character) is not dict or type(foe) is not dict:
+        raise TypeError("Character and foe both must be a dictionaries.")
+
+    elif [value for key, value in character.items() if key in keys_needed and (type(value) is not int or value < 0)]\
+            or [value for key, value in foe.items() if key in keys_needed and (type(value) is not int or value < 0)]:
+        raise ValueError("'Current HP', 'Strength' and 'Luck' values must be positive nonzero integers.")
+
+    else:
+        belligerents = (character, foe)
+        switch_turns = itertools.cycle((0, 1))
 
     while character["Current HP"] > MIN_HEALTH and foe["Current HP"] > MIN_HEALTH:
         current_turn = next(switch_turns)
