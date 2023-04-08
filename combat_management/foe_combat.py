@@ -6,7 +6,7 @@ A01351415
 
 import random
 import itertools
-from playsound import playsound
+from utilities import try_play_sound
 from character_management.manage_character import is_alive
 from character_management import MIN_HEALTH
 
@@ -94,12 +94,14 @@ def fight_foe(character: dict, foe: dict) -> bool:
                 """
                 if not opponent_turn:
                     print(f"You complete {damage} questions on the {opponent['Name']}.\n")
-                    playsound("wri.wav")
+                    try_play_sound.try_play_sound(filename="./sounds/res.wav",
+                                                  action=f"Sound of you working on your {opponent['Name']}")
 
                 else:
                     print(f"You eat {damage} pieces of Reeses Pieces due to stress from the {fighter['Name']}.")
                     print(f"You have {opponent['Current HP']} Reeses Pieces left.\n")
-                    playsound("eat.wav")
+                    try_play_sound.try_play_sound(filename="./sounds/eat.wav",
+                                                  action="Sound of you eating some Reeses Pieces")
 
             print_round_results(opponent_turn=current_turn, fighter=current, opponent=opposing, damage=damage_amount)
 
