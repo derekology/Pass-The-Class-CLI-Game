@@ -8,7 +8,7 @@ from board_management import MIN_ROWS, MIN_COLUMNS
 
 def draw_board(board: dict, columns: int) -> None:
     """
-    Print an evenly-spaced coordinate-based game board.
+    Print an evenly-spaced coordinate-based game board with the specified number of columns.
 
     :param board: a dictionary representing a coordinate-based game board
     :param columns: an integer representing the number of columns on the board
@@ -22,6 +22,15 @@ def draw_board(board: dict, columns: int) -> None:
 
     >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]", (0, 1): "[   ]", (1, 1): "[   ]"}
     >>> draw_board(board=test_board, columns=2)
+    [   ][   ]
+    [   ][   ]
+    >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]", (0, 1): "[   ]", (1, 1): "[   ]"}
+    >>> draw_board(board=test_board, columns=3)
+    [   ][   ][   ]
+    [   ]
+    >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]", (0, 1): "[   ]", (1, 1): "[   ]"}
+    >>> draw_board(board=test_board, columns=4)
+    [   ][   ][   ][   ]
     """
     if type(board) is not dict or type(columns) is not int:
         raise TypeError("Game board must be a dictionary and columns must be an integer")
@@ -34,17 +43,15 @@ def draw_board(board: dict, columns: int) -> None:
     elif columns < MIN_COLUMNS:
         raise ValueError(f"Game board must have {MIN_COLUMNS} or more columns.")
 
-    counter = 0
-    game_spaces = [space for space in board.values()]
+    else:
+        counter = 0
+        game_spaces = [space for space in board.values()]
 
-    print("\n\n\n")
+        for space in game_spaces:
+            end_char = '\n' if (counter + 1) % columns == 0 else ''
+            print(space, end=end_char)
+            counter += 1
 
-    for space in game_spaces:
-        end_char = '\n' if (counter + 1) % columns == 0 else '\t'
-        print(space, end=end_char)
-        counter += 1
-
-    print("")
 
 
 def make_board(rows: int, columns: int) -> dict:
