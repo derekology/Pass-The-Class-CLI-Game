@@ -99,7 +99,19 @@ def escape_from_foe(character: dict) -> bool:
     :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
     :postcondition: determines whether character escapes from foe as a function of character's luck attribute
     :return: whether character escapes from foe as a boolean
+    :raises TypeError: if character is not a dictionary
+    :raises KeyError: if character dictionary does not contain a 'Luck' key
+    :raises ValueError: if character dictionary 'Luck' value is not an integer greater than or equal to zero
     """
+    if type(character) is not dict:
+        raise TypeError("Character must be a dictionary.")
+
+    elif "Luck" not in character.keys():
+        raise KeyError("Character dictionary must contain 'Luck' key")
+
+    elif type(character["Luck"]) is not int or character["Luck"] < 0:
+        raise ValueError("Character's luck must be an integer greater than or equal to zero.")
+
     chance = random.random()
 
     if chance <= 0.1 * character["Luck"]:
