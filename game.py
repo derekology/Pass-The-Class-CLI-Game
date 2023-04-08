@@ -2,8 +2,7 @@
 Derek Woo
 A01351415
 """
-
-
+import json
 import random
 from playsound import playsound
 from board_management import manage_board
@@ -94,7 +93,7 @@ def game():
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
         if [space for space in game_board.values()].count("['R']") == 0:
-            print("Finding more resources...")
+            print("Finding more study resources...")
             resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
@@ -104,6 +103,7 @@ def game():
 
         character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
+        print("\n\n\n")
         manage_board.draw_board(board=game_board, columns=columns)
         print("")
         manage_character.print_character_stats(character=character)
@@ -154,13 +154,13 @@ def game():
                 print(f"You (level {character['Level']}) need to finish a {encountered_foe['Name']} "
                       f"(Difficulty level: {encountered_foe['Level']})!\n\n")
 
-                if input(f"Type \"Y\" to try to flee: ").upper() == "Y"\
+                if input(f"Type \"Y\" to make up an excuse to skip it: ").upper() == "Y"\
                         and manage_foes.escape_from_foe(character=character):
                     print("Your excused worked! Woo!")
                     playsound("woo.wav")
 
                 else:
-                    print("Fight initiated!\n")
+                    print("Let's get to it, I guess...\n")
                     if foe_combat.fight_foe(character=character, foe=encountered_foe) and \
                             (random.random() * character["Luck"]) > 0.80:
                         playsound("res.wav")
