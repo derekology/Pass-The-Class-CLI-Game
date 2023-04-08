@@ -104,7 +104,6 @@ def apply_resource(character: dict) -> None:
     Apply a resource to upgrade character's selected skill attribute.
 
     :param character: a dictionary representing the character's status
-    :precondition: board must be a dictionary containing tuples of two positive integers as keys and strings as values
     :precondition: character must be a dictionary
     :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Strength" key associated with an integer greater than or equal to zero
