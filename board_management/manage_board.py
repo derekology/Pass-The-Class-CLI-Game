@@ -53,8 +53,7 @@ def draw_board(board: dict, columns: int) -> None:
             counter += 1
 
 
-
-def make_board(rows: int, columns: int) -> dict:
+def make_board(rows: int = MIN_COLUMNS, columns: int = MIN_COLUMNS) -> dict:
     """
     Generate a coordinate-based game board with of the specified size with assigned room names.
 
