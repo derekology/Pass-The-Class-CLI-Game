@@ -23,23 +23,28 @@ def check_for_foes() -> bool:
         return False
 
 
-def create_foe(character: dict) -> dict:
+def create_foe(character: dict, boss: bool = False) -> dict:
     """
     Create foe for combat.
 
     :param character: a dictionary representing the character's current status
+    :param boss: a boolean representing whether the foe is a boss
     :precondition: character must be a dictionary
     :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Strength" key associated with an integer greater than or equal to zero
+    :precondition: boss must be a boolean value
     :postcondition: creates a foe for combat based on player health and strength
     :return: a foe for character to fight as a dictionary
     """
     foe_types = ("Goblin", "Elf", "Bear", "Cow", "Unicorn")
     boss = check_for_boss(character=character)
 
-    foe_type = f"Boss {random.choice(foe_types)}" if boss else random.choice(foe_types)
-    foe_health = int(character["Current HP"] + random.random() * (5 if boss else 3))
-    foe_strength = int(character["Strength"] + random.random() * 5)
+    foe_health = 15 if boss else int(character["Current HP"] + random.random())
+    foe_strength = 7 if boss else int(character["Strength"] + random.random())
+
+    foe_type = "Final exam" if boss else random.choice(foe_types)
+    foe_luck = random.randint(1, 2)
+    foe_level = (foe_health + foe_strength) // 5
 
     print(foe_health)
     print(foe_strength)
