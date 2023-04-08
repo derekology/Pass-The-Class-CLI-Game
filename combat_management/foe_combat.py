@@ -6,10 +6,9 @@ A01351415
 
 import random
 import itertools
-from time import sleep
+from playsound import playsound
 from character_management.manage_character import is_alive
 from character_management import MIN_HEALTH
-from combat_management import TIME_BETWEEN_COMBAT
 
 
 def calculate_damage(fighter: dict) -> int:
