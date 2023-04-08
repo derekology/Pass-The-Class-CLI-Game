@@ -37,10 +37,18 @@ def mark_resources(board: dict, character: dict, special_tiles: int = 3) -> None
             character["Y-coordinate"] not in [y for (_, y) in board]:
         raise ValueError("Character's coordinates must be on the game board.")
 
-    resource_locations = random.sample(game_spaces, k=special_tiles)
+    game_spaces = [key for key in board.keys() if key != (character['X-coordinate'], character['Y-coordinate'])]
 
-    for location in resource_locations:
-        board[location] = "['R']"
+    if resource_tiles < 0 or resource_tiles > len(game_spaces) - 1:
+        raise ValueError("Number of special tiles must between zero and the number of non-character game tiles.")
+
+    else:
+        if manage_foes.check_for_boss(character=character):
+            boss_location = game_spaces.pop(random.randint(0, len(game_spaces) - 1))
+            board[boss_location] = "['B']"
+
+        for location in random.sample(game_spaces, k=resource_tiles):
+            board[location] = "['R']"
 
 
 def locate_character(board: dict, character: dict) -> None:
