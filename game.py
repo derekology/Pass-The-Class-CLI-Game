@@ -5,6 +5,7 @@ A01351415
 
 
 import random
+from playsound import playsound
 from board_management import manage_board
 from board_management import manage_locations
 from character_management import manage_character
@@ -150,12 +151,14 @@ def game():
 
                 if input(f"Type \"Y\" to try to flee: ").upper() == "Y"\
                         and manage_foes.escape_from_foe(character=character):
-                    print("You've successfully escaped!")
+                    print("Your excused worked! Woo!")
+                    playsound("woo.wav")
 
                 else:
                     print("Fight initiated!\n")
                     if foe_combat.fight_foe(character=character, foe=encountered_foe) and \
                             (random.random() * character["Luck"]) > 0.80:
+                        playsound("res.wav")
                         character_level.apply_resource(character=character)
                         print(f"end of combat: {[x[3] for x in inspect.stack()]}")
 
