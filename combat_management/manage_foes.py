@@ -25,7 +25,7 @@ def check_for_foes() -> bool:
 
 def create_foe(character: dict, boss: bool = False) -> dict:
     """
-    Create foe for combat.
+    Create foe for combat based on player character attributes.
 
     :param character: a dictionary representing the character's current status
     :param boss: a boolean representing whether the foe is a boss
@@ -35,9 +35,20 @@ def create_foe(character: dict, boss: bool = False) -> dict:
     :precondition: boss must be a boolean value
     :postcondition: creates a foe for combat based on player health and strength
     :return: a foe for character to fight as a dictionary
+    :raises TypeError: if character is not a dictionary or boss is not a boolean
+    :raises KeyError: if character dictionary does not contain "Current HP" or "Strength" key, or both
+    :raises ValueError: if character dictionary's "Current HP" value is not an integer greater than or equal to zero
+    :raises ValueError: if character dictionary's "Strength" value is not an integer greater than or equal to zero
     """
-    foe_types = ("Goblin", "Elf", "Bear", "Cow", "Unicorn")
-    boss = check_for_boss(character=character)
+    keys_needed = ["Current HP", "Strength"]
+
+    if type(character) is not dict or type(boss) is not bool:
+        raise TypeError("Character and foe both must be a dictionaries.")
+
+    elif [val for key, val in character.items() if key in keys_needed and (type(val) is not int or val < 0)]:
+        raise ValueError("'Current HP', 'Strength' and 'Luck' values must be positive nonzero integers.")
+
+    foe_types = ("pop quiz", "assignment", "lab", "hand-in template", "solo quiz", "partner quiz", "lecture demo")
 
     foe_health = 15 if boss else int(character["Current HP"] + random.random())
     foe_strength = 7 if boss else int(character["Strength"] + random.random())
