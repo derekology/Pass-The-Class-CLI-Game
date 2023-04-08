@@ -14,6 +14,8 @@ def calculate_character_level(character: dict) -> None:
     :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to 0
     :precondition: character must contain a "Strength" key associated with an integer greater than or equal to 0
     :postcondition: creates or updates "Level" key in character dictionary with the character's overall level
+    :raises TypeError: if character is not a dictionary
+    :raises KeyError: if "Current HP" or "Strength" key, or both, does not exist in character dictionary
 
     >>> test_character = {"Current HP": 0, "Strength": 0}
     >>> calculate_character_level(character=test_character)
