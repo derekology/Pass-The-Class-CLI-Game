@@ -85,15 +85,22 @@ def fight_foe(character: dict, foe: dict) -> bool:
         current_fighter = belligerents[current_turn]
         opposing_fighter = belligerents[(current_turn + 1) % 2]
 
-        damage = calculate_damage(current_fighter)
-        opposing_fighter["Current HP"] -= damage
+            def print_round_results(opponent_turn: int, fighter: dict, opponent: dict, damage: int) -> None:
+                """
+                Print results of combat round.
 
-        if not current_turn:
-            print(f"You inflicted {damage} damage to {opposing_fighter['Name']}.\n")
+                :postcondition: prints the amount of damage inflicted by fighter to opponent
+                :postcondition: plays combat sound effect after each round
+                :postcondition: prints the amount of health character has left if opponent is character
+                """
+                if not opponent_turn:
+                    print(f"You complete {damage} questions on the {opponent['Name']}.\n")
+                    playsound("wri.wav")
 
-        else:
-            print(f"{current_fighter['Name']} inflicted {damage} damage to {opposing_fighter['Name']}.")
-            print(f"You have {opposing_fighter['Current HP']}HP left\n")
+                else:
+                    print(f"You eat {damage} pieces of Reeses Pieces due to stress from the {fighter['Name']}.")
+                    print(f"You have {opponent['Current HP']} Reeses Pieces left.\n")
+                    playsound("eat.wav")
 
         sleep(TIME_BETWEEN_COMBAT)
 
