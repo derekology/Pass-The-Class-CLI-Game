@@ -79,11 +79,11 @@ def fight_foe(character: dict, foe: dict) -> bool:
         belligerents = (character, foe)
         switch_turns = itertools.cycle((0, 1))
 
-    while character["Current HP"] > MIN_HEALTH and foe["Current HP"] > MIN_HEALTH:
-        current_turn = next(switch_turns)
+        while character["Current HP"] > MIN_HEALTH and foe["Current HP"] > MIN_HEALTH:
+            current = belligerents[current_turn := next(switch_turns)]
+            opposing = belligerents[(current_turn + 1) % 2]
 
-        current_fighter = belligerents[current_turn]
-        opposing_fighter = belligerents[(current_turn + 1) % 2]
+            opposing["Current HP"] = opposing["Current HP"] - (damage_amount := calculate_damage(current))
 
             def print_round_results(opponent_turn: int, fighter: dict, opponent: dict, damage: int) -> None:
                 """
@@ -102,9 +102,9 @@ def fight_foe(character: dict, foe: dict) -> bool:
                     print(f"You have {opponent['Current HP']} Reeses Pieces left.\n")
                     playsound("eat.wav")
 
-        sleep(TIME_BETWEEN_COMBAT)
+            print_round_results(opponent_turn=current_turn, fighter=current, opponent=opposing, damage=damage_amount)
 
-    return is_alive(character=character, alive_message="You win the fight!\n")
+        return is_alive(character=character, alive_message=f"You passed the {foe['Name']}!\n")
 
 
 def main():
