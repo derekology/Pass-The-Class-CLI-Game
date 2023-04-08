@@ -31,10 +31,12 @@ def is_alive(character: dict, alive_message=None, not_alive_message=None) -> boo
     :param alive_message: optional string representing a message to be printed if character is still alive
     :param not_alive_message: optional string representing a message to be printed if character is not alive
     :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
-    :precondition: alive_message must be a nonempty string
-    :precondition: not_alive_message must be a nonempty string
+    :precondition: alive_message must be a non-empty string
+    :precondition: not_alive_message must be a non-empty string
     :postcondition: checks whether the character has health points remaining
     :return: whether the character's current number of health points is greater than zero as a boolean
+    :raises ValueError: if alive_message is present but is an empty string or not a string
+    :raises ValueError: if not_alive_message is present but is an empty string or not a string
 
     >>> test_character = {"Current HP": 5}
     >>> is_alive(character=test_character)
@@ -46,9 +48,16 @@ def is_alive(character: dict, alive_message=None, not_alive_message=None) -> boo
     >>> is_alive(character=test_character)
     False
     """
-    if character["Current HP"] > MIN_HEALTH:
-        print(alive_message)
-        return True
+    if alive_message and (type(alive_message) is not str or len(alive_message) == 0):
+        raise ValueError("alive_message must be a non-empty string.")
+
+    elif not_alive_message and (type(not_alive_message) is not str or len(not_alive_message) == 0):
+        raise ValueError("not_alive_message must be a non-empty string.")
+
+    else:
+        if character["Current HP"] > MIN_HEALTH:
+            print(alive_message) if alive_message else None
+            return True
 
     else:
         print(not_alive_message)
