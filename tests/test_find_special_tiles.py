@@ -108,7 +108,7 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=1)
-        expected = {(0, 0): "['R']", (1, 0): "[   ]", (2, 0): "[   ]",
+        expected = {(0, 0): "['L']", (1, 0): "[   ]", (2, 0): "[   ]",
                     (0, 1): "[   ]", (1, 1): "[   ]", (2, 1): "[   ]",
                     (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         actual = test_board
@@ -122,9 +122,9 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=3)
-        expected = {(0, 0): "['R']", (1, 0): "[   ]", (2, 0): "[   ]",
-                    (0, 1): "[   ]", (1, 1): "['R']", (2, 1): "[   ]",
-                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "['R']"}
+        expected = {(0, 0): "['L']", (1, 0): "[   ]", (2, 0): "[   ]",
+                    (0, 1): "[   ]", (1, 1): "['L']", (2, 1): "[   ]",
+                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "['L']"}
         actual = test_board
         self.assertEqual(expected, actual)
 
@@ -136,9 +136,9 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=7)
-        expected = {(0, 0): "[   ]", (1, 0): "['R']", (2, 0): "['R']",
-                    (0, 1): "['R']", (1, 1): "['R']", (2, 1): "['R']",
-                    (0, 2): "['R']", (1, 2): "[   ]", (2, 2): "['R']"}
+        expected = {(0, 0): "[   ]", (1, 0): "['L']", (2, 0): "['L']",
+                    (0, 1): "['L']", (1, 1): "['L']", (2, 1): "['L']",
+                    (0, 2): "['L']", (1, 2): "[   ]", (2, 2): "['L']"}
         actual = test_board
         self.assertEqual(expected, actual)
 
@@ -150,7 +150,7 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=0)
-        expected = {(0, 0): "[   ]", (1, 0): "['B']", (2, 0): "[   ]",
+        expected = {(0, 0): "[   ]", (1, 0): "['E']", (2, 0): "[   ]",
                     (0, 1): "[   ]", (1, 1): "[   ]", (2, 1): "[   ]",
                     (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         actual = test_board
@@ -165,8 +165,8 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=1)
-        expected = {(0, 0): "[   ]", (1, 0): "['B']", (2, 0): "[   ]",
-                    (0, 1): "['R']", (1, 1): "[   ]", (2, 1): "[   ]",
+        expected = {(0, 0): "[   ]", (1, 0): "['E']", (2, 0): "[   ]",
+                    (0, 1): "['L']", (1, 1): "[   ]", (2, 1): "[   ]",
                     (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         actual = test_board
         self.assertEqual(expected, actual)
@@ -180,9 +180,9 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=3)
-        expected = {(0, 0): "[   ]", (1, 0): "['B']", (2, 0): "[   ]",
-                    (0, 1): "['R']", (1, 1): "['R']", (2, 1): "[   ]",
-                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "['R']"}
+        expected = {(0, 0): "[   ]", (1, 0): "['E']", (2, 0): "[   ]",
+                    (0, 1): "['L']", (1, 1): "['L']", (2, 1): "[   ]",
+                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "['L']"}
         actual = test_board
         self.assertEqual(expected, actual)
 
@@ -195,8 +195,8 @@ class TestFindSpecialTiles(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"Level": 1, "X-coordinate": 0, "Y-coordinate": 0}
         find_special_tiles(board=test_board, character=test_character, resource_tiles=7)
-        expected = {(0, 0): "[   ]", (1, 0): "['B']", (2, 0): "['R']",
-                    (0, 1): "['R']", (1, 1): "['R']", (2, 1): "['R']",
-                    (0, 2): "['R']", (1, 2): "['R']", (2, 2): "['R']"}
+        expected = {(0, 0): "[   ]", (1, 0): "['E']", (2, 0): "['L']",
+                    (0, 1): "['L']", (1, 1): "['L']", (2, 1): "['L']",
+                    (0, 2): "['L']", (1, 2): "['L']", (2, 2): "['L']"}
         actual = test_board
         self.assertEqual(expected, actual)
