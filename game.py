@@ -5,18 +5,12 @@ A01351415
 
 
 import random
-from playsound import playsound
-from board_management import manage_board
-from board_management import manage_locations
-from character_management import manage_character
-from character_management import character_movement
-from character_management import character_level
-from combat_management import manage_foes
-from combat_management import foe_combat
-from save_management import load_game
-from save_management import save_game
-from utilities import check_for_special_tile
-from utilities import try_play_sound
+import utilities
+from board_management import manage_board, manage_locations
+from character_management import manage_character, character_movement, character_level
+from combat_management import manage_foes, foe_combat
+from save_management import save_game, load_game
+from utilities import try_play_sound, check_for_special_tile, guessing_game
 import inspect
 
 
@@ -24,46 +18,9 @@ def game():
     """
     Run the game.
     """
-    print("""
-┬ ┬┌─┐┬  ┌─┐┌─┐┌┬┐┌─┐  ┌┬┐┌─┐
-│││├┤ │  │  │ ││││├┤    │ │ │
-└┴┘└─┘┴─┘└─┘└─┘┴ ┴└─┘   ┴ └─┘
- ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄              
-▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌             
-▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀              
-▐░▌       ▐░▌▐░▌       ▐░▌▐░▌          ▐░▌                       
-▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄              
-▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌             
-▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀▀▀▀▀▀█░▌ ▀▀▀▀▀▀▀▀▀█░▌             
-▐░▌          ▐░▌       ▐░▌          ▐░▌          ▐░▌             
-▐░▌          ▐░▌       ▐░▌ ▄▄▄▄▄▄▄▄▄█░▌ ▄▄▄▄▄▄▄▄▄█░▌             
-▐░▌          ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌             
- ▀            ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀              
- ▄▄▄▄▄▄▄▄▄▄▄  ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄                           
-▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌                          
- ▀▀▀▀█░█▀▀▀▀ ▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀▀▀                           
-     ▐░▌     ▐░▌       ▐░▌▐░▌                                    
-     ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄                           
-     ▐░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌                          
-     ▐░▌     ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀                           
-     ▐░▌     ▐░▌       ▐░▌▐░▌                                    
-     ▐░▌     ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄                           
-     ▐░▌     ▐░▌       ▐░▌▐░░░░░░░░░░░▌                          
-      ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀                           
- ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ 
-▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
-▐░█▀▀▀▀▀▀▀▀▀ ▐░▌          ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ 
-▐░▌          ▐░▌          ▐░▌       ▐░▌▐░▌          ▐░▌          
-▐░▌          ▐░▌          ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ 
-▐░▌          ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
-▐░▌          ▐░▌          ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀▀▀▀▀▀█░▌ ▀▀▀▀▀▀▀▀▀█░▌
-▐░▌          ▐░▌          ▐░▌       ▐░▌          ▐░▌          ▐░▌
-▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌ ▄▄▄▄▄▄▄▄▄█░▌ ▄▄▄▄▄▄▄▄▄█░▌
-▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
- ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ 
-                                                                 
-    """)
-    if input("Type 'Y' to load an existing game save: ").upper() == "Y":
+    print(f"\n\n\n{utilities.TITLE_SCREEN_ASCII}")
+    should_load_game = input("Type 'Y' to load an existing game save (or any other character to continue): ").upper()
+    if should_load_game == "Y":
         loaded_data = load_game.load_game()
 
         character = loaded_data[0]
@@ -106,9 +63,9 @@ def game():
 
         character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
-        print("\n\n\n")
+        print(f"\n\n\n")
         manage_board.draw_board(board=game_board, columns=columns)
-        print("")
+        print(f"")
         manage_character.print_character_stats(character=character)
 
         direction = character_movement.get_user_choice()
@@ -120,14 +77,7 @@ def game():
 
             if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=True):
                 encountered_foe = manage_foes.create_foe(character=character, boss=True)
-                print(r"""
-███████╗██╗███╗   ██╗ █████╗ ██╗         ███████╗██╗  ██╗ █████╗ ███╗   ███╗
-██╔════╝██║████╗  ██║██╔══██╗██║         ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║
-█████╗  ██║██╔██╗ ██║███████║██║         █████╗   ╚███╔╝ ███████║██╔████╔██║
-██╔══╝  ██║██║╚██╗██║██╔══██║██║         ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║
-██║     ██║██║ ╚████║██║  ██║███████╗    ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║
-╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝           
-                                                                  """)
+                print(f"\n\n\n{utilities.FINAL_EXAM_ASCII}")
                 print(f"You (level {character['Level']}) have to complete a {encountered_foe['Name']} to pass "
                       f"the course (Difficulty level: {encountered_foe['Level']})!\n\n")
 
@@ -179,15 +129,10 @@ def game():
             print("You cannot go that way.")
 
     else:
-        print("""
- ▄· ▄▌      ▄• ▄▌    ·▄▄▄ ▄▄▄· ▪  ▄▄▌  ▄▄▄ .·▄▄▄▄           
-▐█▪██▌▪     █▪██▌    ▐▄▄·▐█ ▀█ ██ ██•  ▀▄.▀·██▪ ██          
-▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪ ▄█▀▀█ ▐█·██▪  ▐▀▀▪▄▐█· ▐█▌         
- ▐█▀·.▐█▌.▐▌▐█▄█▌    ██▌.▐█ ▪▐▌▐█▌▐█▌▐▌▐█▄▄▌██. ██          
-  ▀ •  ▀█▄▀▪ ▀▀▀     ▀▀▀  ▀  ▀ ▀▀▀.▀▀▀  ▀▀▀ ▀▀▀▀▀•  ▀  ▀  ▀ 
-        """)
-        try_play_sound.try_play_sound(filename="./sounds/res.wav", action="Sound of you failing the class")
-        print("Summer's too hot to spend outside the classroom anyways...")
+        print(f"\n\n\n{utilities.YOU_FAILED_ASCII}")
+        print(f"You run out of Reeses and pass out, not completing the class.\n\n"
+              f"Summer's too hot to spend outside the classroom anyways...")
+        try_play_sound.try_play_sound(filename="./sounds/lose.wav", action="Sound of you failing the class")
 
 
 def main():
