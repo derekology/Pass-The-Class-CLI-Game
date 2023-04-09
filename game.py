@@ -35,7 +35,7 @@ def game():
         for coordinate in loaded_data[4]:
             game_board[tuple(coordinate)] = "['E']"
 
-        print(f"Welcome back to my game, {character['Name']}")
+        print(f"Save loaded. Welcome back to my game, {character['Name']}")
 
     else:
         rows = 5
