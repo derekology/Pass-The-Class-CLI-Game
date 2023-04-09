@@ -26,8 +26,8 @@ def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) ->
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if special_tiles is not an integer
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
-    :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
-    :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
+    :raises KeyError: if character dictionary does not contain "X-coordinate" or "Y-coordinate" key, or both
+    :raises ValueError: if character's "X-coordinate" or "Y-coordinate" is not found on the game board
     :raises ValueError: if special_tiles is less than zero or greater than the number of non-character game tiles
     """
     if type(character["X-coordinate"]) is not int or type(character["Y-coordinate"]) is not int \
@@ -65,8 +65,8 @@ def locate_character(board: dict, character: dict) -> None:
     :postcondition: updates the value of the character's game board coordinates key to a green ['P']
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
-    :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
-    :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
+    :raises KeyError: if character dictionary does not contain "X-coordinate" or "Y-coordinate" key, or both
+    :raises ValueError: if character's "X-coordinate" or "Y-coordinate" is not found on the game board
 
     >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
