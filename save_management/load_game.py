@@ -15,10 +15,10 @@ def load_game() -> tuple:
     character_name = None
 
     while not character_name:
-        character_name = input("What is your saved character's name?: ")
+        character_name = input(f"What is your saved character's name?: ")
 
         while not pathlib.Path(f"savegames/{character_name}.save").is_file():
-            character_name = input("Save not found. What is your saved character's name?: ")
+            character_name = input(f"Save not found. What is your saved character's name?: ")
 
         with open(f"savegames/{character_name}.save", "r") as save_file:
             data = save_file.read()
@@ -31,7 +31,7 @@ def load_game() -> tuple:
 
         else:
             save_state = (loaded_data["character"], loaded_data["board"]["rows"], loaded_data["board"]["columns"],
-                          loaded_data["board"]["resource"], loaded_data["board"]["boss"])
+                          loaded_data["board"]["resource"], loaded_data["board"]["boss"], loaded_data["week"])
 
             return save_state
 
