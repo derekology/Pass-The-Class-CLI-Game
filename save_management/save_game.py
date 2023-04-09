@@ -1,18 +1,20 @@
 import json
 
 
-def save_game(character: dict, board: dict) -> None:
+def save_game(character: dict, board: dict, week: int) -> None:
     """
     Save character and board state as an external JSON-formatted .save file in the savegame folder.
 
     :param character: a dictionary representing the character's current status
     :param board: a dictionary representing a coordinate-based game board
+    :param week: a integer representing the number of game weeks played by the character
     :precondition: character must be a dictionary
     :precondition: character must be a dictionary containing an "X-coordinate" key associated with an integer
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
     :precondition: board must be a dictionary containing tuples of two positive integers as keys and strings as values
     :precondition: board must have zero or more resource tiles marked with cyan "['L']" as its coordinate's value
     :precondition: board must have zero or more resource tiles marked with red "['E']" as its coordinate's value
+    :precondition: week must be an integer greater than or equal to zero
     :postcondition: saves character state and location of resources as a JSON-formatted file
     :postcondition: creates or overwrites file at savegame/{character_name}.save
     :postcondition: prints an informative message if game state is successfully saved
@@ -26,7 +28,7 @@ def save_game(character: dict, board: dict) -> None:
                   "resource": board_resources,
                   "boss": board_bosses}
 
-    save_data = {"character": character_data, "board": board_data}
+    save_data = {"character": character_data, "board": board_data, "week": week}
 
     with open(f"savegames/{character_name}.save", "w") as save_file:
         json.dump(save_data, save_file)
