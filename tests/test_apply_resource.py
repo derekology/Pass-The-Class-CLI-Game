@@ -181,4 +181,3 @@ class TestApplyResource(TestCase):
         expected = {"Reeses": 0, "Smarts": 0, "Luck": 1}
         actual = test_character
         self.assertEqual(expected, actual)
-
