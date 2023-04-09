@@ -14,4 +14,6 @@ A01351415
 derekology
 
 ## Any important comments you'd like to make about your work:
-Replace this line with any comments you want to share
+Hi Chris - because random luck plays a significant part in the success or failure of the user, I have added two save games as a shortcut for testing:
+* Derek.save - will beat the Final Exam with ease
+* Level3.save - *should* beat the Final Exam with relative ease
