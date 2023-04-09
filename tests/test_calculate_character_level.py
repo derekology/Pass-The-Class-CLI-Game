@@ -14,53 +14,53 @@ class TestCalculateCharacterLevel(TestCase):
         with self.assertRaises(TypeError):
             calculate_character_level(character=test_character)
 
-    def test_calculate_character_level_without_current_hp_key(self):
-        test_character = {"Strength": 1}
+    def test_calculate_character_level_without_reeses_key(self):
+        test_character = {"Smarts": 1}
         with self.assertRaises(KeyError):
             calculate_character_level(character=test_character)
 
-    def test_calculate_character_level_without_strength_key(self):
-        test_character = {"Current HP": 1}
+    def test_calculate_character_level_without_smarts_key(self):
+        test_character = {"Reeses": 1}
         with self.assertRaises(KeyError):
             calculate_character_level(character=test_character)
 
-    def test_calculate_character_level_without_current_hp_or_strength_key(self):
+    def test_calculate_character_level_without_reeses_or_smarts_key(self):
         test_character = {}
         with self.assertRaises(KeyError):
             calculate_character_level(character=test_character)
 
-    def test_calculate_character_level_with_0_hp_and_strength(self):
-        test_character = {"Current HP": 0, "Strength": 0}
+    def test_calculate_character_level_with_0_reeses_and_smarts(self):
+        test_character = {"Reeses": 0, "Smarts": 0}
         calculate_character_level(character=test_character)
-        expected = {"Current HP": 0, "Strength": 0, "Level": 0}
+        expected = {"Reeses": 0, "Smarts": 0, "Level": 0}
         actual = test_character
         self.assertEqual(expected, actual)
 
-    def test_calculate_character_level_with_1_hp_and_strength(self):
-        test_character = {"Current HP": 1, "Strength": 1}
+    def test_calculate_character_level_with_1_reeses_and_smarts(self):
+        test_character = {"Reeses": 1, "Smarts": 1}
         calculate_character_level(character=test_character)
-        expected = {"Current HP": 1, "Strength": 1, "Level": 0}
+        expected = {"Reeses": 1, "Smarts": 1, "Level": 0}
         actual = test_character
         self.assertEqual(expected, actual)
 
-    def test_calculate_character_level_with_10_hp_and_strength(self):
-        test_character = {"Current HP": 10, "Strength": 10}
+    def test_calculate_character_level_with_10_reeses_and_smarts(self):
+        test_character = {"Reeses": 10, "Smarts": 10}
         calculate_character_level(character=test_character)
-        expected = {"Current HP": 10, "Strength": 10, "Level": 4}
+        expected = {"Reeses": 10, "Smarts": 10, "Level": 4}
         actual = test_character
         self.assertEqual(expected, actual)
 
-    def test_calculate_character_level_with_higher_strength(self):
-        test_character = {"Current HP": 5, "Strength": 10}
+    def test_calculate_character_level_with_higher_smarts(self):
+        test_character = {"Reeses": 5, "Smarts": 10}
         calculate_character_level(character=test_character)
-        expected = {"Current HP": 5, "Strength": 10, "Level": 3}
+        expected = {"Reeses": 5, "Smarts": 10, "Level": 3}
         actual = test_character
         self.assertEqual(expected, actual)
 
-    def test_calculate_character_level_with_higher_hp(self):
-        test_character = {"Current HP": 10, "Strength": 5}
+    def test_calculate_character_level_with_higher_reeses(self):
+        test_character = {"Reeses": 10, "Smarts": 5}
         calculate_character_level(character=test_character)
-        expected = {"Current HP": 10, "Strength": 5, "Level": 3}
+        expected = {"Reeses": 10, "Smarts": 5, "Level": 3}
         actual = test_character
         self.assertEqual(expected, actual)
 
