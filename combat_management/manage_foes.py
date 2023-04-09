@@ -30,37 +30,34 @@ def create_foe(character: dict, boss: bool = False) -> dict:
     :param character: a dictionary representing the character's current status
     :param boss: a boolean representing whether the foe is a boss
     :precondition: character must be a dictionary
-    :precondition: character must contain a "Current HP" key associated with an integer greater than or equal to zero
-    :precondition: character must contain a "Strength" key associated with an integer greater than or equal to zero
+    :precondition: character must contain a "Reeses" key associated with an integer greater than or equal to zero
+    :precondition: character must contain a "Smarts" key associated with an integer greater than or equal to zero
     :precondition: boss must be a boolean value
-    :postcondition: creates a foe for combat based on player health and strength
+    :postcondition: creates a foe for combat based on player reeses and smarts
     :return: a foe for character to fight as a dictionary
     :raises TypeError: if character is not a dictionary or boss is not a boolean
-    :raises KeyError: if character dictionary does not contain "Current HP" or "Strength" key, or both
-    :raises ValueError: if character dictionary's "Current HP" value is not an integer greater than or equal to zero
-    :raises ValueError: if character dictionary's "Strength" value is not an integer greater than or equal to zero
+    :raises KeyError: if character dictionary does not contain "Reeses" or "Smarts" key, or both
+    :raises ValueError: if character dictionary's "Reeses" value is not an integer greater than or equal to zero
+    :raises ValueError: if character dictionary's "Smarts" value is not an integer greater than or equal to zero
     """
-    keys_needed = ["Current HP", "Strength"]
+    keys_needed = ["Reeses", "Smarts"]
 
     if type(character) is not dict or type(boss) is not bool:
         raise TypeError("Character and foe both must be a dictionaries.")
 
     elif [val for key, val in character.items() if key in keys_needed and (type(val) is not int or val < 0)]:
-        raise ValueError("'Current HP', 'Strength' and 'Luck' values must be positive nonzero integers.")
+        raise ValueError("'Reeses', 'Smarts' and 'Luck' values must be positive nonzero integers.")
 
     foe_types = ("pop quiz", "assignment", "lab", "hand-in template", "solo quiz", "partner quiz", "lecture demo")
 
-    foe_health = 15 if boss else int(character["Current HP"] + random.random())
-    foe_strength = 7 if boss else int(character["Strength"] + random.random())
+    foe_reeses = 15 if boss else int(character["Reeses"] + random.random())
+    foe_smarts = 7 if boss else int(character["Smarts"] + random.random())
 
     foe_type = "Final exam" if boss else random.choice(foe_types)
     foe_luck = random.randint(1, 2)
-    foe_level = (foe_health + foe_strength) // 5
+    foe_level = (foe_reeses + foe_smarts) // 5
 
-    print(foe_health)
-    print(foe_strength)
-
-    return {"Name": foe_type, "Current HP": foe_health, "Strength": foe_strength, "Level": foe_level, "Luck": foe_luck}
+    return {"Name": foe_type, "Reeses": foe_reeses, "Smarts": foe_smarts, "Level": foe_level, "Luck": foe_luck}
 
 
 def check_for_boss(character: dict) -> bool:
