@@ -10,7 +10,6 @@ from character_management.character_level import get_upgrade_choice
 
 
 class TestGetUpgradeChoice(TestCase):
-
     @patch("builtins.input", side_effect=["Reeses"])
     def test_get_upgrade_choice_with_reeses_upgrade_with_full_word(self, _):
         expected = "Reeses"
