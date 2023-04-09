@@ -111,9 +111,10 @@ def game():
                 print(f"You (level {character['Level']}) need to finish a {encountered_foe['Name']} "
                       f"(Difficulty level: {encountered_foe['Level']})!\n\n")
 
-                if input(f"Type \"Y\" to make up an excuse to skip it: ").upper() == "Y"\
-                        and manage_foes.escape_from_foe(character=character):
-                    print("Your excused worked! Woo!")
+                try_to_escape = input(f"Type \"Y\" to make up an excuse to skip it "
+                                      f"(or any other character to continue): ").upper()
+                if try_to_escape == "Y" and manage_foes.escape_from_foe(character=character):
+                    print(f"Your excused worked! Woo!")
                     try_play_sound.try_play_sound(filename="./sounds/woo.wav",
                                                   action="Sound of cheering")
 
