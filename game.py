@@ -83,7 +83,7 @@ def game():
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
 
-            print(f"You finished a week of CST! Let's enjoy the weekend...")
+            print(f"You finished a week of classes! Let's enjoy the weekend...")
 
             should_save_game = input("Type 'Y' to save your game (or any other character to continue): ").upper()
             if should_save_game == "Y":
@@ -152,7 +152,7 @@ def game():
     else:
         print(f"\n\n\n{utilities.YOU_FAILED_ASCII}")
         print(f"You run out of Reeses and pass out, not completing the class.\n\n"
-              f"Summer's too hot to spend outside the classroom anyways...")
+              f"Summer's too hot to spend off campus anyways...")
         try_play_sound.try_play_sound(filename="./sounds/lose.wav", action="Sound of you failing the class")
 
 
