@@ -9,7 +9,7 @@ import json
 
 def save_game(character: dict, board: dict, week: int) -> None:
     """
-    Save character and board state as an external JSON-formatted .save file in the savegame folder.
+    Save character and board state as an external JSON-formatted .save file in the savegames folder.
 
     :param character: a dictionary representing the character's current status
     :param board: a dictionary representing a coordinate-based game board
@@ -22,7 +22,7 @@ def save_game(character: dict, board: dict, week: int) -> None:
     :precondition: board must have zero or more resource tiles marked with red "['E']" as its coordinate's value
     :precondition: week must be an integer greater than or equal to zero
     :postcondition: saves character state and location of resources as a JSON-formatted file
-    :postcondition: creates or overwrites file at savegame/{character_name}.save
+    :postcondition: creates or overwrites file at savegames/{character_name}.save
     :postcondition: prints an informative message if game state is successfully saved
     """
     character_name = character["Name"]
