@@ -30,10 +30,10 @@ def game():
         game_board = manage_board.make_board(rows=rows, columns=columns)
 
         for coordinate in loaded_data[3]:
-            game_board[tuple(coordinate)] = "['R']"
+            game_board[tuple(coordinate)] = "['L']"
 
         for coordinate in loaded_data[4]:
-            game_board[tuple(coordinate)] = "['B']"
+            game_board[tuple(coordinate)] = "['E']"
 
         print(f"Welcome back to my game, {character['Name']}")
 
@@ -52,8 +52,7 @@ def game():
             character_level.apply_resource(character=character)
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
-        if [space for space in game_board.values()].count("['R']") == 0:
-            print("Finding more study resources...")
+        if [space for space in game_board.values()].count("['L']") == 0:
             resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
