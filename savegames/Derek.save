@@ -1,0 +1,1 @@
+{"character": {"Name": "Derek", "X-coordinate": 4, "Y-coordinate": 3, "Reeses": 22, "Luck": 13, "Smarts": 32, "Level": 10}, "board": {"rows": 5, "columns": 5, "resource": [[1, 2]], "boss": [[1, 4]]}}
