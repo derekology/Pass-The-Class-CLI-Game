@@ -8,7 +8,7 @@ from playsound import playsound
 from playsound import PlaysoundException
 
 
-def try_play_sound(filename: str, action: str = "a sound playing") -> None:
+def try_play_sound(filename: str, action: str = "A sound playing") -> None:
     """
     Try to play a sound file, and print action if an error is raised.
 
