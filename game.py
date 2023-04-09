@@ -48,8 +48,20 @@ def game():
 
     while manage_character.is_alive(character=character):
         if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
-            try_play_sound.try_play_sound(filename="./sounds/res.wav", action="Sound of you finding a study resource")
-            character_level.apply_resource(character=character)
+            print(f"\n\n\n{utilities.LOCKER_FOUND_ASCII}")
+            print(f"\nYou find a locker! What's the combinations, though?", end=" ")
+            if guessing_game.guessing_game():
+                print(f"The locker opens! What would you like to take?", end=" ")
+                try_play_sound.try_play_sound(filename="./sounds/res.wav",
+                                              action="Sound of you finding a study resource")
+                character_level.apply_resource(character=character)
+                try_play_sound.try_play_sound(filename="./sounds/lev.wav",
+                                              action="Sound of you upgrading yourself")
+
+            else:
+                print(f"Incorrect combination. The secret is lost forever...")
+                try_play_sound.try_play_sound(filename="./sounds/wrong.wav", action="Sad sound effect")
+
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
         if [space for space in game_board.values()].count("['L']") == 0:
@@ -57,8 +69,13 @@ def game():
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
 
-            if input("Type 'Y' to save your game: ").upper() == "Y":
+            print(f"You finished a week of CST! Let's enjoy the weekend...")
+
+            should_save_game = input("Type 'Y' to save your game (or any other character to continue): ").upper()
+            if should_save_game == "Y":
                 save_game.save_game(character=character, board=game_board)
+
+            print(f"Jokes... what is a weekend anyways? Let's move onto the next week...")
 
         character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
@@ -83,7 +100,7 @@ def game():
                 try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of a final exam")
 
                 if foe_combat.fight_foe(character=character, foe=encountered_foe):
-                    print("You passed the course! See you in Term 2.")
+                    print(f"You passed the class! See you in Term 2.")
                     try_play_sound.try_play_sound(filename="./sounds/win.wav",
                                                   action="Sound of you passing the Final exam")
                     break
@@ -101,9 +118,10 @@ def game():
                                                   action="Sound of cheering")
 
                 else:
-                    print("Let's get to it, I guess...\n")
+                    print(f"Let's get to it, I guess...\n")
                     if foe_combat.fight_foe(character=character, foe=encountered_foe) and \
                             (random.random() * character["Luck"]) > 0.80:
+                        print(f"Your answers were so good, you deserve a treat!", end=" ")
                         try_play_sound.try_play_sound(filename="./sounds/res.wav",
                                                       action="Sound of you finding a study resource")
                         character_level.apply_resource(character=character)
@@ -112,7 +130,7 @@ def game():
             print(f"end of loop: {[x[3] for x in inspect.stack()]}")
 
         else:
-            print("You cannot go that way.")
+            print(f"You cannot go that way.")
 
     else:
         print(f"\n\n\n{utilities.YOU_FAILED_ASCII}")
