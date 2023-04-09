@@ -3,6 +3,7 @@ Derek Woo
 A01351415
 """
 
+
 from board_management import MIN_ROWS, MIN_COLUMNS
 
 
@@ -48,7 +49,7 @@ def draw_board(board: dict, columns: int) -> None:
         game_spaces = [space for space in board.values()]
 
         for space in game_spaces:
-            end_char = '\n' if (counter + 1) % columns == 0 else ''
+            end_char = "\n" if (counter + 1) % columns == 0 else ""
             print(space, end=end_char)
             counter += 1
 
