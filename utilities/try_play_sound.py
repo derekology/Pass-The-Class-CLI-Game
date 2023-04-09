@@ -25,3 +25,13 @@ def try_play_sound(filename: str, action: str = "A sound playing") -> None:
 
     except PlaysoundException:
         print(f"*{action}*")
+
+
+def main():
+    """
+    Drive the program.
+    """
+
+
+if __name__ == "__main__":
+    main()
