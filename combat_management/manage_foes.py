@@ -33,7 +33,7 @@ def create_foe(character: dict, boss: bool = False) -> dict:
     :precondition: character must contain a "Reeses" key associated with an integer greater than or equal to zero
     :precondition: character must contain a "Smarts" key associated with an integer greater than or equal to zero
     :precondition: boss must be a boolean value
-    :postcondition: creates a foe for combat based on player reeses and smarts
+    :postcondition: creates a foe for combat based on player Reeses and Smarts
     :return: a foe for character to fight as a dictionary
     :raises TypeError: if character is not a dictionary or boss is not a boolean
     :raises KeyError: if character dictionary does not contain "Reeses" or "Smarts" key, or both
