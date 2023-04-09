@@ -20,7 +20,7 @@ def guessing_game() -> bool:
     """
     number_to_guess = str(random.randint(1, 3))
 
-    guess = input("(Choose a number between 1 and 3 inclusive): ")
+    guess = input(f"(Choose a number between 1 and 3 inclusive): ")
 
     while not guess.isdigit() or int(guess) not in range(1, 4):
         guess = input(f"\nYour guess is not on the lock. Choose an integer between 1 and 3 inclusive: ")
