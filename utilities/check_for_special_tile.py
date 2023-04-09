@@ -52,3 +52,14 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
         character_location = (character["X-coordinate"], character["Y-coordinate"])
 
         return board[character_location] == search_target
+
+
+def main():
+    """
+    Drive the program.
+    """
+
+
+if __name__ == "__main__":
+    main()
+
