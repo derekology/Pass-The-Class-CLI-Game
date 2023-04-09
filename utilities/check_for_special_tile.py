@@ -21,8 +21,8 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if boss is not a boolean value
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
-    :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
-    :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
+    :raises KeyError: if character dictionary does not contain "X-coordinate" or "Y-coordinate" key, or both
+    :raises ValueError: if character's "X-coordinate" or "Y-coordinate" is not found on the game board
 
     >>> test_board = {(0, 0): "[\x1b[36m'L'\x1b[0m]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
