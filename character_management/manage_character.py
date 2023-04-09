@@ -14,10 +14,10 @@ def make_character() -> dict:
     :return: a level 1 character as a dictionary at coordinates (0, 0) with 5 reeses points, 1 Luck point,
              and 1 Smarts point
     """
-    char_name = input("What should your character's name be?: ")
+    char_name = input(f"What should your character's name be?: ")
 
     while len(char_name) == MIN_CHARACTER_NAME_LENGTH:
-        char_name = input("Name cannot be blank. Try again: ")
+        char_name = input(f"Name cannot be blank. Try again: ")
 
     return {"Name": char_name, "X-coordinate": 0, "Y-coordinate": 0, "Reeses": 5,
             "Luck": 1, "Smarts": 1, "Level": 1}
