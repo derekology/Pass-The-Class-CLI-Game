@@ -88,8 +88,6 @@ def apply_resource(character: dict) -> None:
         else:
             character["Luck"] += LUCK_UPGRADE_AMOUNT
 
-        playsound("lev.wav")
-
 
 def main():
     """
