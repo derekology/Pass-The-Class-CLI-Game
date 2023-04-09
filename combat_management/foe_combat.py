@@ -101,7 +101,7 @@ def fight_foe(character: dict, foe: dict) -> bool:
                     print(f"You try to eat {damage} pieces of Reeses due to stress from the {fighter['Name']}.")
                     print(f"You have {max(0, opponent['Reeses'])} Reeses left.\n")
                     try_play_sound.try_play_sound(filename="./sounds/eat.wav",
-                                                  action="Sound of you eating some Reeses Pieces")
+                                                  action="Sound of you eating some Reeses")
 
             print_round_results(opponent_turn=current_turn, fighter=current, opponent=opposing, damage=damage_amount)
 
