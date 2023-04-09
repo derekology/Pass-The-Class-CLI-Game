@@ -83,4 +83,3 @@ class TestEscapeFromFoe(TestCase):
         test_character = {"Luck": 10}
         actual = escape_from_foe(character=test_character)
         self.assertTrue(actual)
-
