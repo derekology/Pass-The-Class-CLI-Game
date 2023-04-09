@@ -21,8 +21,8 @@ def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) ->
     :precondition: values of "X-coordinate" and "Y-coordinate" keys in character must exist as coordinates in board
     :precondition: special_tiles must be a positive integer greater than or equal to zero
     :precondition: special_tiles must be less than the total number of non-character coordinates on board minus one
-    :postcondition: checks if a boss exists on the game board and if so, marks one random coordinate with ['E']
-    :postcondition: marks the remaining number of tiles on random non-character coordinates as a resource with ['L']
+    :postcondition: checks if a boss exists on the game board and if so, marks one random coordinate with a red ['E']
+    :postcondition: marks remaining number of tiles on random non-character coordinates as a resource with a cyan ['L']
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if special_tiles is not an integer
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
@@ -46,10 +46,10 @@ def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) ->
     else:
         if manage_foes.check_for_boss(character=character):
             boss_location = game_spaces.pop(random.randint(0, len(game_spaces) - 1))
-            board[boss_location] = "['E']"
+            board[boss_location] = "[\x1b[31m'E'\x1b[0m]"
 
         for location in random.sample(game_spaces, k=resource_tiles):
-            board[location] = "['L']"
+            board[location] = "[\x1b[36m'L'\x1b[0m]"
 
 
 def locate_character(board: dict, character: dict) -> None:
@@ -62,7 +62,7 @@ def locate_character(board: dict, character: dict) -> None:
     :precondition: character must be a dictionary containing an "X-coordinate" key associated with an integer
     :precondition: character must be a dictionary containing a "Y-coordinate" key associated with an integer
     :precondition: values of "X-coordinate" and "Y-coordinate" keys in character must exist as coordinates in board
-    :postcondition: updates the value of the character's game board coordinates key to ['P']
+    :postcondition: updates the value of the character's game board coordinates key to a green ['P']
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
     :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
@@ -72,12 +72,12 @@ def locate_character(board: dict, character: dict) -> None:
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> locate_character(board=test_board, character=test_character)
     >>> test_board
-    {(0, 0): "['P']", (1, 0): '[   ]'}
+    {(0, 0): "[\\x1b[92m'P'\\x1b[0m]", (1, 0): '[   ]'}
     >>> test_board = {(0, 0): "[   ]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 1, "Y-coordinate": 0}
     >>> locate_character(board=test_board, character=test_character)
     >>> test_board
-    {(0, 0): '[   ]', (1, 0): "['P']"}
+    {(0, 0): '[   ]', (1, 0): "[\\x1b[92m'P'\\x1b[0m]"}
     """
     if type(board) is not dict or type(character) is not dict:
         raise TypeError("Character and game board must both be dictionaries.")
@@ -92,7 +92,7 @@ def locate_character(board: dict, character: dict) -> None:
     else:
         location = (character["X-coordinate"], character["Y-coordinate"])
 
-        board[location] = "['P']"
+        board[location] = f"[\x1b[92m'P'\x1b[0m]"
 
 
 def main():
