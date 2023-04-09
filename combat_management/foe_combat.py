@@ -94,7 +94,7 @@ def fight_foe(character: dict, foe: dict) -> bool:
                 """
                 if not opponent_turn:
                     print(f"You complete {damage} questions on the {opponent['Name']}.\n")
-                    try_play_sound.try_play_sound(filename="./sounds/res.wav",
+                    try_play_sound.try_play_sound(filename="./sounds/wri.wav",
                                                   action=f"Sound of you working on your {opponent['Name']}")
 
                 else:
