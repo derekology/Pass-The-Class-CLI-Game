@@ -10,7 +10,7 @@ from board_management import manage_board, manage_locations
 from character_management import manage_character, character_movement, character_level
 from combat_management import manage_foes, foe_combat
 from save_management import save_game, load_game
-from utilities import try_play_sound, check_for_special_tile, guessing_game
+from utilities import try_play_sound, check_for_special_tile, guessing_game, read_game_intro
 import inspect
 
 
@@ -19,23 +19,33 @@ def game():
     Run the game.
     """
     print(f"\n\n\n{utilities.TITLE_SCREEN_ASCII}")
+
     should_load_game = input("Type 'Y' to load an existing game save (or any other character to continue): ").upper()
+
     if should_load_game == "Y":
-        loaded_data = load_game.load_game()
+        loaded_data = None
 
-        character = loaded_data[0]
+        while not loaded_data:
+            loaded_data = load_game.load_game()
 
-        rows = loaded_data[1]
-        columns = loaded_data[2]
-        game_board = manage_board.make_board(rows=rows, columns=columns)
+            try:
+                character = loaded_data[0]
+                rows = loaded_data[1]
+                columns = loaded_data[2]
 
-        for coordinate in loaded_data[3]:
-            game_board[tuple(coordinate)] = "['L']"
+            except TypeError:
+                print("Unable to load save data. Ensure that your save file is not corrupted.")
 
-        for coordinate in loaded_data[4]:
-            game_board[tuple(coordinate)] = "['E']"
+            else:
+                game_board = manage_board.make_board(rows=rows, columns=columns)
 
-        print(f"Save loaded. Welcome back to my game, {character['Name']}")
+                for coordinate in loaded_data[3]:
+                    game_board[tuple(coordinate)] = "[\x1b[36m'L'\x1b[0m]"
+
+                for coordinate in loaded_data[4]:
+                    game_board[tuple(coordinate)] = "[\x1b[31m'E'\x1b[0m]"
+
+                print(f"Save loaded. Welcome back to Pass the Class, {character['Name']}!")
 
     else:
         rows = 5
