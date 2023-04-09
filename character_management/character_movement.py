@@ -17,14 +17,14 @@ def get_user_choice() -> str:
     """
     directions = {"W": "Up", "A": "Left", "S": "Down", "D": "Right"}
 
-    next_movement = input("\nWhich direction would you like to travel in?\n(W) Up\n"
+    next_movement = input(f"\nWhich direction would you like to travel in?\n(W) Up\n"
                           "(A) Left\n(S) Down\n(D) Right\n\n"
                           "Choose a direction: ").upper()
 
     while next_movement not in ["W", "A", "S", "D"]:
         print(f"Invalid direction entered.", end=" ")
 
-        next_movement = input("\nWhich direction would you like to travel in?\n(W) Up\n"
+        next_movement = input(f"\nWhich direction would you like to travel in?\n(W) Up\n"
                               "(A) Left\n(S) Down\n(D) Right\n\n"
                               "Choose a direction: ").upper()
 
