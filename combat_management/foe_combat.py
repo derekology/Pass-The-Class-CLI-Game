@@ -88,9 +88,9 @@ def fight_foe(character: dict, foe: dict) -> bool:
                 """
                 Print results of combat round.
 
-                :postcondition: prints the amount of damage inflicted by fighter to opponent
+                :postcondition: prints the amount of damage inflicted by fighter to opponent to a max of opponent health
                 :postcondition: plays combat sound effect after each round
-                :postcondition: prints the amount of reeses character has left if opponent is character
+                :postcondition: prints the amount of Reeses or Questions character has left
                 """
                 max_damage = min(damage, opponent['Reeses'] + damage)
 
