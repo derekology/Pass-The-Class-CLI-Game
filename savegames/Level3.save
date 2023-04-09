@@ -1,0 +1,1 @@
+{"character": {"Name": "D", "X-coordinate": 3, "Y-coordinate": 2, "Reeses": 9, "Luck": 5, "Smarts": 10, "Level": 3}, "board": {"rows": 5, "columns": 5, "resource": [[3, 1], [4, 2]], "boss": [[2, 2]]}}
