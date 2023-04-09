@@ -24,7 +24,7 @@ def game():
     game_board = None
     week = None
 
-    should_load_game = input("Type 'Y' to load an existing game save (or any other character to continue): ").upper()
+    should_load_game = input(f"\nType 'Y' to load an existing game save (or any other character to continue): ").upper()
 
     if should_load_game == "Y":
         loaded_data = None
@@ -39,7 +39,7 @@ def game():
                 week = loaded_data[5]
 
             except TypeError:
-                print("Unable to load save data. Ensure that your save file is not corrupted.")
+                print(f"\nUnable to load save data. Ensure that your save file is not corrupted.")
 
             else:
                 game_board = manage_board.make_board(rows=rows, columns=columns)
@@ -50,7 +50,7 @@ def game():
                 for coordinate in loaded_data[4]:
                     game_board[tuple(coordinate)] = "[\x1b[31m'E'\x1b[0m]"
 
-                print(f"Save loaded. Welcome back to Pass the Class, {character['Name']}!")
+                print(f"\nSave loaded. Welcome back to Pass the Class, {character['Name']}!")
 
     else:
         rows = 5
@@ -91,13 +91,13 @@ def game():
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
             week += 1
 
-            print(f"You finished a week of classes! Let's enjoy the weekend...")
+            print(f"\nYou finished a week of classes! Let's enjoy the weekend...")
 
-            should_save_game = input("Type 'Y' to save your game (or any other character to continue): ").upper()
+            should_save_game = input(f"\nType 'Y' to save your game (or any other character to continue): ").upper()
             if should_save_game == "Y":
-                save_game.save_game(character=character, board=game_board)
+                save_game.save_game(character=character, board=game_board, week=week)
 
-            print(f"Jokes... what is a weekend anyways? Let's move onto the next week...")
+            print(f"\nJokes... what is a weekend anyways? Let's move onto week {week}...")
 
         character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
@@ -131,14 +131,16 @@ def game():
 
             if manage_foes.check_for_foes():
                 encountered_foe = manage_foes.create_foe(character=character, boss=False)
-                print(f"\n\n\n{utilities.UPCOMING_DUE_DATE_ASCII}")
-                print(f"You (level {character['Level']}) need to finish a {encountered_foe['Name']} "
-                      f"(Difficulty level: {encountered_foe['Level']})!\n\n")
+
+                print(f"\n\n\n{UPCOMING_DUE_DATE_ASCII}")
+                print(f"You need to finish a {encountered_foe['Name']} "
+                      f"({encountered_foe['Reeses']} questions)!\n\n")
 
                 try_to_escape = input(f"Type \"Y\" to make up an excuse to skip it "
                                       f"(or any other character to continue): ").upper()
+
                 if try_to_escape == "Y" and manage_foes.escape_from_foe(character=character):
-                    print(f"Your excused worked! Woo!")
+                    print(f"Your excuse worked and you skip the deliverable! Woo!")
                     try_play_sound.try_play_sound(filename="./sounds/woo.wav",
                                                   action="Sound of cheering")
 
