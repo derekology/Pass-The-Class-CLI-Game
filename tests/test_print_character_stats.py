@@ -117,4 +117,3 @@ class TestPrintCharacterStats(TestCase):
         expected = "Test Character (Level 0)\nReeses: 5\nSmarts: 10\nLuck:15\n"
         actual = mock_print.getvalue()
         self.assertIn(expected, actual)
-
