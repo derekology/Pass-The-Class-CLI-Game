@@ -45,7 +45,7 @@ def get_upgrade_choice() -> str:
                         f"(R) Reeses + 3\n(S) Smarts + 1\n(L) Luck + 1\n\nYour choice: ").capitalize()
 
     while user_choice not in ["Reeses", "Smarts", "Luck", "R", "S", "L"]:
-        user_choice = input("Unknown choice. Please pick one of: Reeses, Smarts, or Luck: ").capitalize()
+        user_choice = input(f"Unknown choice. Please pick one of: Reeses, Smarts, or Luck: ").capitalize()
 
     return user_choice
 
