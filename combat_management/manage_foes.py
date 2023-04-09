@@ -70,8 +70,8 @@ def check_for_boss(character: dict) -> bool:
     :postcondition: determines whether a foe is a boss-level enemy as a function of the character's level
     :return: whether foe is a boss-level enemy as a boolean
     :raises TypeError: if character is not a dictionary
-    :raises KeyError: if character dictionary does not contain a 'Level' key
-    :raises ValueError: if character dictionary 'Level' value is not an integer greater than or equal to zero
+    :raises KeyError: if character dictionary does not contain a "Level" key
+    :raises ValueError: if character dictionary "Level" value is not an integer greater than or equal to zero
     """
     if type(character) is not dict:
         raise TypeError("Character must be a dictionary.")
@@ -94,11 +94,11 @@ def escape_from_foe(character: dict) -> bool:
     :param character: a dictionary representing the character's current status
     :precondition: character must be a dictionary
     :precondition: character must contain a "Luck" key associated with an integer greater than or equal to zero
-    :postcondition: determines whether character escapes from foe as a function of character's luck attribute
+    :postcondition: determines whether character escapes from foe as a function of character's "Luck" attribute
     :return: whether character escapes from foe as a boolean
     :raises TypeError: if character is not a dictionary
-    :raises KeyError: if character dictionary does not contain a 'Luck' key
-    :raises ValueError: if character dictionary 'Luck' value is not an integer greater than or equal to zero
+    :raises KeyError: if character dictionary does not contain a "Luck" key
+    :raises ValueError: if character dictionary "Luck" value is not an integer greater than or equal to zero
     """
     if type(character) is not dict:
         raise TypeError("Character must be a dictionary.")
