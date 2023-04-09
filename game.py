@@ -36,6 +36,7 @@ def game():
                 character = loaded_data[0]
                 rows = loaded_data[1]
                 columns = loaded_data[2]
+                week = loaded_data[5]
 
             except TypeError:
                 print("Unable to load save data. Ensure that your save file is not corrupted.")
@@ -54,6 +55,7 @@ def game():
     else:
         rows = 5
         columns = 5
+        week = 0
         game_board = manage_board.make_board(rows=rows, columns=columns)
         character = manage_character.make_character()
         manage_locations.find_special_tiles(board=game_board, character=character)
@@ -87,6 +89,7 @@ def game():
             resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
+            week += 1
 
             print(f"You finished a week of classes! Let's enjoy the weekend...")
 
