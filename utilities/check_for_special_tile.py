@@ -24,15 +24,15 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
     :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
     :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
 
-    >>> test_board = {(0, 0): "['R']", (1, 0): "[   ]"}
+    >>> test_board = {(0, 0): "['L']", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=False)
     True
-    >>> test_board = {(0, 0): "['B']", (1, 0): "[   ]"}
+    >>> test_board = {(0, 0): "['E']", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=True)
     True
-    >>> test_board = {(0, 0): "[   ]", (1, 0): "['R']"}
+    >>> test_board = {(0, 0): "[   ]", (1, 0): "['L']"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=False)
     False
