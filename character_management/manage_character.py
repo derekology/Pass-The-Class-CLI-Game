@@ -2,7 +2,7 @@
 Derek Woo
 A01351415
 """
-from character_management import MIN_CHARACTER_NAME_LENGTH, MIN_HEALTH
+from character_management import MIN_CHARACTER_NAME_LENGTH, MIN_REESES
 
 
 def make_character() -> dict:
