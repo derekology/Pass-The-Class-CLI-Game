@@ -1,3 +1,9 @@
+"""
+Derek Woo
+A01351415
+"""
+
+
 import json
 import pathlib
 
