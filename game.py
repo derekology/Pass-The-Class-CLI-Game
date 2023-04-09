@@ -5,20 +5,24 @@ A01351415
 
 
 import random
-import utilities
 from board_management import manage_board, manage_locations
 from character_management import manage_character, character_movement, character_level
 from combat_management import manage_foes, foe_combat
 from save_management import save_game, load_game
 from utilities import try_play_sound, check_for_special_tile, guessing_game, read_game_intro
-import inspect
+from utilities import TITLE_SCREEN_ASCII, LOCKER_FOUND_ASCII, YOU_FAILED_ASCII, UPCOMING_DUE_DATE_ASCII, FINAL_ASCII
 
 
 def game():
     """
     Run the game.
     """
-    print(f"\n\n\n{utilities.TITLE_SCREEN_ASCII}")
+    print(f"\n\n\n{TITLE_SCREEN_ASCII}")
+    character = None
+    rows = None
+    columns = None
+    game_board = None
+    week = None
 
     should_load_game = input("Type 'Y' to load an existing game save (or any other character to continue): ").upper()
 
@@ -62,8 +66,9 @@ def game():
 
     while manage_character.is_alive(character=character):
         if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
-            print(f"\n\n\n{utilities.LOCKER_FOUND_ASCII}")
+            print(f"\n\n\n{LOCKER_FOUND_ASCII}")
             print(f"\nYou find a locker! What's the combinations, though?", end=" ")
+
             if guessing_game.guessing_game():
                 print(f"The locker opens! What would you like to take?", end=" ")
                 try_play_sound.try_play_sound(filename="./sounds/res.wav",
@@ -107,9 +112,11 @@ def game():
 
             if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=True):
                 encountered_foe = manage_foes.create_foe(character=character, boss=True)
-                print(f"\n\n\n{utilities.FINAL_EXAM_ASCII}")
-                print(f"You (level {character['Level']}) have to complete a {encountered_foe['Name']} to pass "
-                      f"the course (Difficulty level: {encountered_foe['Level']})!\n\n")
+
+                print(f"\n\n\n{FINAL_ASCII}")
+                print(f"You have to complete a {encountered_foe['Name']} to pass "
+                      f"the course ({encountered_foe['Reeses']} questions)!\n\n")
+                print(f"No escaping from this one...\n")
 
                 try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of a final exam")
 
@@ -150,7 +157,7 @@ def game():
             print(f"You cannot go that way.")
 
     else:
-        print(f"\n\n\n{utilities.YOU_FAILED_ASCII}")
+        print(f"\n\n\n{YOU_FAILED_ASCII}")
         print(f"You run out of Reeses and pass out, not completing the class.\n\n"
               f"Summer's too hot to spend off campus anyways...")
         try_play_sound.try_play_sound(filename="./sounds/lose.wav", action="Sound of you failing the class")
