@@ -26,3 +26,13 @@ def guessing_game() -> bool:
         guess = input(f"\nYour guess is not on the lock. Choose an integer between 1 and 3 inclusive: ")
 
     return number_to_guess == guess
+
+
+def main():
+    """
+    Drive the program.
+    """
+
+
+if __name__ == "__main__":
+    main()
