@@ -104,6 +104,7 @@ class TestCheckForSpecialTile(TestCase):
         test_character = {"X-coordinate": 0, "Y-coordinate": 0}
         expected = False
         actual = check_for_special_tile(board=test_board, character=test_character, boss=True)
+        self.assertEqual(expected, actual)
 
     def test_check_for_special_tile_with_a_boss_but_no_resource_looking_for_boss(self):
         test_board = {(0, 0): "[\x1b[31m'E'\x1b[0m]", (1, 0): "[   ]"}
