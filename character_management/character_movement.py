@@ -2,6 +2,8 @@
 Derek Woo
 A01351415
 """
+
+
 from character_management import COORDINATE_CHANGE
 
 
