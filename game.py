@@ -155,9 +155,6 @@ def game():
                         character_level.apply_resource(character=character)
                         try_play_sound.try_play_sound(filename="./sounds/lev.wav",
                                                       action="Sound of you upgrading yourself")
-                        print(f"end of combat: {[x[3] for x in inspect.stack()]}")
-
-            print(f"end of loop: {[x[3] for x in inspect.stack()]}")
 
         else:
             print(f"You cannot go that way.")
