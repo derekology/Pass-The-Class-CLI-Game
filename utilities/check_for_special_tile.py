@@ -48,7 +48,7 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
         raise ValueError("Character's coordinates must be on the game board.")
 
     else:
-        search_target = "['B']" if boss else "['R']"
+        search_target = "['E']" if boss else "['L']"
         character_location = (character["X-coordinate"], character["Y-coordinate"])
 
         return board[character_location] == search_target
