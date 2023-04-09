@@ -54,7 +54,11 @@ def game():
         character = manage_character.make_character()
         manage_locations.find_special_tiles(board=game_board, character=character)
 
-        print(f"Welcome to my game, {character['Name']}")
+        try:
+            read_game_intro.read_game_intro(filename="utilities/narrative")
+
+        except FileNotFoundError:
+            print(f"\nWelcome to Pass the Class!")
 
     while manage_character.is_alive(character=character):
         if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
