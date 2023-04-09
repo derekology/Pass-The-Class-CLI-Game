@@ -69,8 +69,6 @@ def make_board(rows: int = MIN_COLUMNS, columns: int = MIN_COLUMNS) -> dict:
 
     >>> make_board(rows=2, columns=2)
     {(0, 0): '[   ]', (1, 0): '[   ]', (0, 1): '[   ]', (1, 1): '[   ]'}
-    >>> make_board(rows=3, columns=3)
-    {(0, 0): '[   ]', (1, 0): '[   ]', (0, 1): '[   ]', (1, 1): '[   ]'}
     """
     if type(rows) is not int or type(columns) is not int:
         raise TypeError(f"Both rows and columns must be integers.")
