@@ -69,7 +69,7 @@ class TestLocateCharacter(TestCase):
                       (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         test_character = {"X-coordinate": 0, "Y-coordinate": 0}
         locate_character(board=test_board, character=test_character)
-        expected = {(0, 0): "['P']", (1, 0): "[   ]", (2, 0): "[   ]",
+        expected = {(0, 0): "[\x1b[92m'P'\x1b[0m]", (1, 0): "[   ]", (2, 0): "[   ]",
                     (0, 1): "[   ]", (1, 1): "[   ]", (2, 1): "[   ]",
                     (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         actual = test_board
@@ -82,7 +82,7 @@ class TestLocateCharacter(TestCase):
         test_character = {"X-coordinate": 1, "Y-coordinate": 1}
         locate_character(board=test_board, character=test_character)
         expected = {(0, 0): "[   ]", (1, 0): "[   ]", (2, 0): "[   ]",
-                    (0, 1): "[   ]", (1, 1): "['P']", (2, 1): "[   ]",
+                    (0, 1): "[   ]", (1, 1): "[\x1b[92m'P'\x1b[0m]", (2, 1): "[   ]",
                     (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[   ]"}
         actual = test_board
         self.assertEqual(expected, actual)
@@ -95,6 +95,6 @@ class TestLocateCharacter(TestCase):
         locate_character(board=test_board, character=test_character)
         expected = {(0, 0): "[   ]", (1, 0): "[   ]", (2, 0): "[   ]",
                     (0, 1): "[   ]", (1, 1): "[   ]", (2, 1): "[   ]",
-                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "['P']"}
+                    (0, 2): "[   ]", (1, 2): "[   ]", (2, 2): "[\x1b[92m'P'\x1b[0m]"}
         actual = test_board
         self.assertEqual(expected, actual)
