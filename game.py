@@ -78,7 +78,7 @@ def game():
 
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
-        if [space for space in game_board.values()].count("['L']") == 0:
+        if [space for space in game_board.values()].count("[\x1b[36m'L'\x1b[0m]") == 0:
             resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
             game_board = manage_board.make_board(rows=rows, columns=columns)
             manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
