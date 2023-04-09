@@ -24,15 +24,15 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
     :raises KeyError: if character dictionary does not contain 'X-coordinate' or 'Y-coordinate' key, or both
     :raises ValueError: if character's 'X-coordinate' or 'Y-coordinate' is not found on the game board
 
-    >>> test_board = {(0, 0): "['L']", (1, 0): "[   ]"}
+    >>> test_board = {(0, 0): "[\x1b[36m'L'\x1b[0m]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=False)
     True
-    >>> test_board = {(0, 0): "['E']", (1, 0): "[   ]"}
+    >>> test_board = {(0, 0): "[\x1b[31m'E'\x1b[0m]", (1, 0): "[   ]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=True)
     True
-    >>> test_board = {(0, 0): "[   ]", (1, 0): "['L']"}
+    >>> test_board = {(0, 0): "[   ]", (1, 0): "[\x1b[36m'L'\x1b[0m]"}
     >>> test_character = {"X-coordinate": 0, "Y-coordinate": 0}
     >>> check_for_special_tile(board=test_board, character=test_character, boss=False)
     False
@@ -48,7 +48,7 @@ def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> 
         raise ValueError("Character's coordinates must be on the game board.")
 
     else:
-        search_target = "['E']" if boss else "['L']"
+        search_target = "[\x1b[31m'E'\x1b[0m]" if boss else "[\x1b[36m'L'\x1b[0m]"
         character_location = (character["X-coordinate"], character["Y-coordinate"])
 
         return board[character_location] == search_target
