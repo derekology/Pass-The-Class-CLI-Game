@@ -67,6 +67,8 @@ def game():
             print(f"\nWelcome to Pass the Class!")
 
     while manage_character.is_alive(character=character):
+        character_level.calculate_character_level(character=character)
+
         if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
             print(f"\n\n\n{LOCKER_FOUND_ASCII}")
             print(f"\nYou find a locker! What's the combinations, though?", end=" ")
@@ -99,7 +101,6 @@ def game():
 
             print(f"\nJokes... what is a weekend anyways? Let's move onto week {week}...")
 
-        character_level.calculate_character_level(character=character)
         manage_locations.locate_character(board=game_board, character=character)
         print(f"\n\n\n")
         manage_board.draw_board(board=game_board, columns=columns)
