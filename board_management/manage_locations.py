@@ -21,8 +21,8 @@ def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) ->
     :precondition: values of "X-coordinate" and "Y-coordinate" keys in character must exist as coordinates in board
     :precondition: special_tiles must be a positive integer greater than or equal to zero
     :precondition: special_tiles must be less than the total number of non-character coordinates on board minus one
-    :postcondition: checks if a boss exists on the game board and if so, marks one random coordinate with ['B']
-    :postcondition: marks the remaining number of tiles on random non-character coordinates as a resource with ['R']
+    :postcondition: checks if a boss exists on the game board and if so, marks one random coordinate with ['E']
+    :postcondition: marks the remaining number of tiles on random non-character coordinates as a resource with ['L']
     :raises TypeError: if either board or character, or both, are not dictionaries
     :raises TypeError: if special_tiles is not an integer
     :raises TypeError: if game board does not contain tuples of two positive integers as keys and strings as values
@@ -46,10 +46,10 @@ def find_special_tiles(board: dict, character: dict, resource_tiles: int = 3) ->
     else:
         if manage_foes.check_for_boss(character=character):
             boss_location = game_spaces.pop(random.randint(0, len(game_spaces) - 1))
-            board[boss_location] = "['B']"
+            board[boss_location] = "['E']"
 
         for location in random.sample(game_spaces, k=resource_tiles):
-            board[location] = "['R']"
+            board[location] = "['L']"
 
 
 def locate_character(board: dict, character: dict) -> None:
