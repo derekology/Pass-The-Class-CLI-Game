@@ -63,4 +63,3 @@ class TestCalculateCharacterLevel(TestCase):
         expected = {"Reeses": 10, "Smarts": 5, "Level": 3}
         actual = test_character
         self.assertEqual(expected, actual)
-
