@@ -77,27 +77,22 @@ def apply_resource(character: dict) -> None:
     :raises KeyError: if "Reeses", "Smarts", or "Luck" key does not exist in character dictionary
     :raises ValueError: if " Reeses", "Smarts", or "Luck" value is not an integer greater than or equal to zero
     """
+    required_keys = ["Reeses", "Smarts", "Luck"]
+
     if type(character) is not dict:
         raise TypeError("Character must be a dictionary.")
 
-    elif [key for key in ["Reeses", "Smarts", "Luck"] if key not in character.keys()]:
+    elif [key for key in required_keys if key not in character.keys()]:
         raise KeyError("Character dictionary must contain 'Reeses', 'Smarts', and 'Luck' keys")
 
-    elif [value for key, value in character.items() if key in ["Reeses", "Smarts", "Luck"]
-            and (type(value) is not int or value < 0)]:
+    elif [value for key, value in character.items() if key in required_keys and (type(value) is not int or value < 0)]:
         raise ValueError("Character Reeses, Smarts, and Luck values must be integers greater than or equal to zero")
 
     else:
         upgrade_attribute = get_upgrade_choice()
+        character[upgrade_attribute] += UPGRADE_AMOUNTS[upgrade_attribute]
 
-        if upgrade_attribute == "Reeses" or upgrade_attribute == "R":
-            character["Reeses"] += REESES_UPGRADE_AMOUNT
-
-        elif upgrade_attribute == "Smarts" or upgrade_attribute == "S":
-            character["Smarts"] += SMARTS_UPGRADE_AMOUNT
-
-        else:
-            character["Luck"] += LUCK_UPGRADE_AMOUNT
+        try_play_sound.try_play_sound(filename="./sounds/lev.wav", action="Sound of you upgrading yourself")
 
 
 def main():
