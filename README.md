@@ -17,3 +17,23 @@ derekology
 Hi Chris - because random luck plays a significant part in the success or failure of the user, I have added two save games as a shortcut for testing:
 * Derek.save - will beat the Final Exam with ease
 * Level3.save - *should* beat the Final Exam with relative ease
+
+## Required Elements
+| Requirements                                                                                                                                          | Module                                  | Line |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|------|
+| (a) use of immutable data structures like tuples to minimize unnecessary mutability                                                                   | combat_management.manage_foes.py        | 51   |
+| (b) use of mutable data structures like lists and dictionaries in a thoughtful and correct manner, i.e., no unnecessary looping through dictionaries  | character_management.manage_character   | 24   |
+| (c) thoughtful use of exceptions and exception handling that prevents the program from crashing                                                       | game.py                                 | 53   |
+| (d) minimized scope and lifetime of all variables and objects                                                                                         | save_management.load_game               | 25   |
+| (e) decomposition of your idea into a collection of small, atomic, independent, and reusable functions                                                | utilities.try_play_sound.py             | 11   |
+| (f) simple flat code that is easy to understand                                                                                                       | character_management.character_level    | 64   |
+| (g) demonstration of an understanding of how comprehensions work through the meaningful and correct use of one or more list/dictionary comprehensions | board_management.manage_board           | 49   |
+| (h) selection using if-statements                                                                                                                     | character_management.character_level    | 54   |
+| (i) repetition using the for-loop and/or the while loop where it makes sense but not excessively                                                      | board_management.manage_board           | 51   |
+| (j) use of the membership operator where it makes sense                                                                                               | character_management.character_movement | 26   |
+| (k) appropriate use of the the range function                                                                                                         | board_management.guessing_game          | 25   |
+| (l) thoughtful and meaningful use of one or more functions from itertools                                                                             | combat_management.foe_combat            | 79   |
+| (m) the random module                                                                                                                                 | board_management.manage_locations       | 51   |
+| (n) function annotations                                                                                                                              | character_management.character_level    | 11   |
+| (o) doctests and/or unit tests for every single function (that is, every function needs doctests or<br>unit tests or doctests and unit tests)         | character_management.character_movement | 87   |
+| (p) ALL output must be formatted using f-strings and/or str.format and/or %-formatting                                                                | character_management.manage_character   | 105  |
