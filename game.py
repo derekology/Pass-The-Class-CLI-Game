@@ -96,7 +96,7 @@ def game():
         direction = character_movement.get_user_choice()
         valid_move = character_movement.validate_move(board=game_board, character=character, direction=direction)
 
-        if valid_move:
+        if manage_character.is_alive(character=character) and valid_move:
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
             character_movement.move_character(character=character, direction=direction)
 
@@ -114,7 +114,7 @@ def game():
                     try_play_sound.try_play_sound(filename="./sounds/win.wav", action="Sound of you passing the exam")
                     break
 
-            if manage_foes.check_for_foes():
+            elif manage_foes.check_for_foes():
                 encountered_foe = manage_foes.create_foe(character=character, boss=False)
 
                 print(f"\n\n\n{UPCOMING_DUE_DATE_ASCII}")
@@ -133,6 +133,9 @@ def game():
                             (random.random() * character["Luck"]) > 0.80:
                         print(f"Your answers were so good, you got a prize! It's not a LEGO though...\n")
                         character_level.apply_resource(character=character)
+
+            else:
+                print("\nThings are strangely calm as you go about your day...")
 
         else:
             print(f"You cannot go that way.")
