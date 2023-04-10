@@ -119,7 +119,7 @@ def game():
 
                 print(f"\n\n\n{FINAL_ASCII}")
                 print(f"You have to complete a {encountered_foe['Name']} to pass "
-                      f"the course ({encountered_foe['Reeses']} questions)!\n\n")
+                      f"the course (Total Questions: {encountered_foe['Reeses']})!\n\n")
                 print(f"No escaping from this one...\n")
 
                 try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of a final exam")
