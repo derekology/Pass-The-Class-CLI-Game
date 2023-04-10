@@ -96,13 +96,13 @@ def fight_foe(character: dict, foe: dict) -> bool:
 
                 if not opponent_turn:
                     print(f"You complete {max_damage} questions on the {opponent['Name']}.")
-                    print(f"{max(0, opponent['Reeses'])} questions left to complete.\n")
+                    print(f"Questions left to complete: {max(0, opponent['Reeses'])}\n")
                     try_play_sound.try_play_sound(filename="./sounds/wri.wav",
                                                   action=f"Sound of you working on your {opponent['Name']}")
 
                 else:
                     print(f"You eat {max_damage} pieces of Reeses due to stress from the {fighter['Name']}.")
-                    print(f"You have {max(0, opponent['Reeses'])} Reeses left.\n")
+                    print(f"Reeses left: {max(0, opponent['Reeses'])}\n")
                     try_play_sound.try_play_sound(filename="./sounds/eat.wav",
                                                   action="Sound of you eating some Reeses")
 
