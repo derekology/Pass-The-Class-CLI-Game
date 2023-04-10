@@ -18,11 +18,6 @@ def game():
     Run the game.
     """
     print(f"\n\n\n{TITLE_SCREEN_ASCII}")
-    character = None
-    rows = None
-    columns = None
-    game_board = None
-    week = None
 
     should_load_game = input(f"\nType 'Y' to load an existing game save (or any other character to continue): ").upper()
 
@@ -71,8 +66,6 @@ def game():
             if guessing_game.guessing_game():
                 print(f"The locker opens! What would you like to take?", end=" ")
                 character_level.apply_resource(character=character)
-                try_play_sound.try_play_sound(filename="./sounds/lev.wav",
-                                              action="Sound of you upgrading yourself")
 
             else:
                 print(f"Incorrect combination. The secret is lost forever...")
@@ -112,8 +105,7 @@ def game():
 
                 print(f"\n\n\n{FINAL_ASCII}")
                 print(f"You have to complete a {encountered_foe['Name']} to pass "
-                      f"the course (Total Questions: {encountered_foe['Reeses']})!\n\n")
-                print(f"No escaping from this one...\n")
+                      f"the course (Question(s): {encountered_foe['Reeses']})!\n\nNo escaping from this one...\n")
 
                 try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of an exam")
 
@@ -126,11 +118,9 @@ def game():
                 encountered_foe = manage_foes.create_foe(character=character, boss=False)
 
                 print(f"\n\n\n{UPCOMING_DUE_DATE_ASCII}")
-                print(f"You need to finish a {encountered_foe['Name']} "
-                      f"({encountered_foe['Reeses']} questions)!\n\n")
+                print(f"You need to finish a {encountered_foe['Name']} (Question(s): {encountered_foe['Reeses']})!\n\n")
 
-                try_to_escape = input(f"Type \"Y\" to make up an excuse to skip it "
-                                      f"(or any other character to continue): ").upper()
+                try_to_escape = input(f"Type \"Y\" to try and skip it (or any other character to continue): ").upper()
 
                 if try_to_escape == "Y" and manage_foes.escape_from_foe(character=character):
                     print(f"Your excuse worked and you skip the deliverable! Woo!")
@@ -138,22 +128,18 @@ def game():
 
                 else:
                     print(f"Let's get to it, I guess...\n")
+
                     if foe_combat.fight_foe(character=character, foe=encountered_foe) and \
                             (random.random() * character["Luck"]) > 0.80:
-                        print(f"Your answers were so good, you deserve a treat!", end=" ")
-                        try_play_sound.try_play_sound(filename="./sounds/res.wav",
-                                                      action="Sound of you finding a study resource")
+                        print(f"Your answers were so good, you got a prize! It's not a LEGO though...\n")
                         character_level.apply_resource(character=character)
-                        try_play_sound.try_play_sound(filename="./sounds/lev.wav",
-                                                      action="Sound of you upgrading yourself")
 
         else:
             print(f"You cannot go that way.")
 
     else:
         print(f"\n\n\n{YOU_FAILED_ASCII}")
-        print(f"You run out of Reeses and pass out, not completing the class.\n\n"
-              f"Summer's too hot to spend off campus anyways...")
+        print(f"You run out of Reeses and pass out mid-semester.\n\nSummer's too hot to spend off campus anyways...")
         try_play_sound.try_play_sound(filename="./sounds/lose.wav", action="Sound of you failing the class")
 
 
