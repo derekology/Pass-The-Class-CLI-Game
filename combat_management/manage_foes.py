@@ -40,7 +40,7 @@ def create_foe(character: dict, boss: bool = False) -> dict:
     :raises ValueError: if character dictionary's "Reeses" value is not an integer greater than or equal to zero
     :raises ValueError: if character dictionary's "Smarts" value is not an integer greater than or equal to zero
     """
-    keys_needed = ["Reeses", "Smarts"]
+    keys_needed = ("Reeses", "Smarts")
 
     if type(character) is not dict or type(boss) is not bool:
         raise TypeError("Character and foe both must be a dictionaries.")
