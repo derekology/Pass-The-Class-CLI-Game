@@ -6,7 +6,7 @@ A01351415
 
 from unittest import TestCase
 from unittest.mock import patch
-from utilities.guessing_game import guessing_game
+from board_management.guessing_game import guessing_game
 
 
 class TestGuessingGame(TestCase):
