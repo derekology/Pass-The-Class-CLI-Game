@@ -5,7 +5,7 @@ A01351415
 
 
 from unittest import TestCase
-from utilities.check_for_special_tile import check_for_special_tile
+from board_management.check_for_special_tile import check_for_special_tile
 
 
 class TestCheckForSpecialTile(TestCase):
