@@ -91,13 +91,13 @@ def print_character_stats(character: dict) -> None:
     if type(character) is not dict:
         raise TypeError("Character must be a dictionary.")
 
-    elif [key for key in ["Name", "Level", "Reeses", "Smarts", "Luck"] if key not in character.keys()]:
+    elif [key for key in ("Name", "Level", "Reeses", "Smarts", "Luck") if key not in character.keys()]:
         raise KeyError("Character dictionary must contain 'Reeses', 'Smarts', and 'Luck' keys")
 
     elif type(character["Name"]) is not str or len(character["Name"]) == 0:
         raise TypeError("Character name must be a non-empty string.")
 
-    elif [value for key, value in character.items() if key in ["Level", "Reeses", "Smarts", "Luck"]
+    elif [value for key, value in character.items() if key in ("Level", "Reeses", "Smarts", "Luck")
             and (type(value) is not int or value < 0)]:
         raise ValueError("Character Level, Reeses, Smarts, and Luck must be integers greater than or equal to zero")
 
