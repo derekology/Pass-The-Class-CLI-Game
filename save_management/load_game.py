@@ -35,7 +35,7 @@ def load_game() -> tuple:
         print("Unable to load save data. Please ensure that your file is a Pass the Class save game.")
 
     except KeyError:
-        print("Unable to load save data. Please ensure the file is not corrupted.")
+        print("Unable to load save data. Please ensure that your file is not corrupted.")
 
     else:
         return save_state
