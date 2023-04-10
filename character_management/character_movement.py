@@ -23,7 +23,7 @@ def get_user_choice() -> str:
                           "(A) Left\n(S) Down\n(D) Right\n\n"
                           "Choose a direction: ").upper()
 
-    while next_movement not in ["W", "A", "S", "D"]:
+    while next_movement not in ("W", "A", "S", "D"):
         print(f"Invalid direction entered.", end=" ")
 
         next_movement = input(f"\nWhich direction would you like to travel in?\n(W) Up\n"
