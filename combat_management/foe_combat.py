@@ -28,10 +28,10 @@ def calculate_damage(fighter: dict) -> int:
     if type(fighter) is not dict:
         raise TypeError("Fighter must be a dictionary.")
 
-    elif [key for key in ["Smarts", "Luck"] if key not in fighter.keys()]:
+    elif [key for key in ("Smarts", "Luck") if key not in fighter.keys()]:
         raise KeyError("Fighter dictionary must contain 'Smarts', and 'Luck' keys")
 
-    elif [value for key, value in fighter.items() if key in ["Smarts", "Luck"]
+    elif [value for key, value in fighter.items() if key in ("Smarts", "Luck")
             and (type(value) is not int or value < 0)]:
         raise ValueError("Fighter 'Smarts' and 'Luck' values must be integers greater than or equal to zero")
 
@@ -65,7 +65,7 @@ def fight_foe(character: dict, foe: dict) -> bool:
     :raises KeyError: if foe dictionary does not contain "Reeses", "Smarts" or "Luck" key, or both
     :raises ValueError: if foe "Reeses", "Smarts" or "Luck" values are not positive nonzero integers
     """
-    keys_needed = ["Reeses", "Smarts", "Luck"]
+    keys_needed = ("Reeses", "Smarts", "Luck")
 
     if type(character) is not dict or type(foe) is not dict:
         raise TypeError("Character and foe both must be a dictionaries.")
