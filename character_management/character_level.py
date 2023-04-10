@@ -39,9 +39,12 @@ def get_upgrade_choice() -> str:
     Ask user for their choice of upgrade in Reeses, Smarts, or Luck attributes.
 
     :postcondition: prompts for user's desired upgrade attribute as one of: "Reeses", "Smarts", or "Luck"
+    :postcondition: play an audio chime upon prompt
     :postcondition: re-issues prompt if user enters an invalid attribute
     :return: the user's desired upgrade attribute as one of "Reese", "Smarts", or "Luck" as a string
     """
+    try_play_sound.try_play_sound(filename="./sounds/res.wav", action="Sound of you finding a study resource")
+
     user_choice = input(f"Choose one of the following:\n\n"
                         f"(R) Reeses + 3\n(S) Smarts + 1\n(L) Luck + 1\n\nYour choice: ").capitalize()
 
