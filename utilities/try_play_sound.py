@@ -4,8 +4,7 @@ A01351415
 """
 
 
-from playsound import playsound
-from playsound import PlaysoundException
+from playsound import playsound, PlaysoundException
 
 
 def try_play_sound(filename: str, action: str = "A sound playing") -> None:
