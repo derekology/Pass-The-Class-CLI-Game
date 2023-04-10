@@ -48,13 +48,13 @@ def get_upgrade_choice() -> str:
     user_choice = input(f"Choose one of the following:\n\n"
                         f"(R) Reeses + 3\n(S) Smarts + 1\n(L) Luck + 1\n\nYour choice: ").capitalize()
 
-    while user_choice not in ["Reeses", "Smarts", "Luck", "R", "S", "L"]:
-        user_choice = input(f"Unknown choice. Please pick one of: Reeses, Smarts, or Luck: ").capitalize()
+    while user_choice not in ("Reeses", "Smarts", "Luck", "R", "S", "L"):
+        user_choice = input(f"Unknown choice. Please pick one of: (R)eeses, (S)marts, or (L)uck: ").capitalize()
 
-    if user_choice in ["Reeses", "R"]:
+    if user_choice in ("Reeses", "R"):
         return "Reeses"
 
-    elif user_choice in ["Smarts", "S"]:
+    elif user_choice in ("Smarts", "S"):
         return "Smarts"
 
     else:
@@ -77,15 +77,15 @@ def apply_resource(character: dict) -> None:
     :raises KeyError: if "Reeses", "Smarts", or "Luck" key does not exist in character dictionary
     :raises ValueError: if " Reeses", "Smarts", or "Luck" value is not an integer greater than or equal to zero
     """
-    required_keys = ["Reeses", "Smarts", "Luck"]
+    keys_needed = ("Reeses", "Smarts", "Luck")
 
     if type(character) is not dict:
         raise TypeError("Character must be a dictionary.")
 
-    elif [key for key in required_keys if key not in character.keys()]:
+    elif [key for key in keys_needed if key not in character.keys()]:
         raise KeyError("Character dictionary must contain 'Reeses', 'Smarts', and 'Luck' keys")
 
-    elif [value for key, value in character.items() if key in required_keys and (type(value) is not int or value < 0)]:
+    elif [value for key, value in character.items() if key in keys_needed and (type(value) is not int or value < 0)]:
         raise ValueError("Character Reeses, Smarts, and Luck values must be integers greater than or equal to zero")
 
     else:
