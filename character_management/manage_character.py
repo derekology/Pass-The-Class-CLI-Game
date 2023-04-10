@@ -103,7 +103,7 @@ def print_character_stats(character: dict) -> None:
 
     else:
         print(f"{character['Name']} (Level {character['Level']})\nReeses: {character['Reeses']}\n"
-              f"Smarts: {character['Smarts']}\nLuck:{character['Luck']}")
+              f"Smarts: {character['Smarts']}\nLuck: {character['Luck']}")
 
 
 def main():
