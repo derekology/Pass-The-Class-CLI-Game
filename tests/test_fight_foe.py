@@ -164,7 +164,7 @@ class TestFightFoe(TestCase):
         test_character = {"Name": "test_character", "Reeses": 10, "Smarts": 1, "Luck": 1}
         test_foe = {"Name": "test_foe", "Reeses": 10, "Smarts": 1, "Luck": 1}
         fight_foe(character=test_character, foe=test_foe)
-        expected = "You eat 10 pieces of Reeses due to stress from the test_foe."
+        expected = "You eat 10 piece(s) of Reeses due to stress from the test_foe."
         actual = mock_output.getvalue()
         self.assertIn(expected, actual)
 
@@ -181,7 +181,7 @@ class TestFightFoe(TestCase):
         test_character = {"Name": "test_character", "Reeses": 10, "Smarts": 1, "Luck": 1}
         test_foe = {"Name": "test_foe", "Reeses": 10, "Smarts": 1, "Luck": 1}
         fight_foe(character=test_character, foe=test_foe)
-        expected = "You complete 10 questions on the test_foe."
+        expected = "You complete 10 question(s) on the test_foe."
         actual = mock_output.getvalue()
         self.assertIn(expected, actual)
 
