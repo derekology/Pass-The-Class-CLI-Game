@@ -27,30 +27,25 @@ def game():
     should_load_game = input(f"\nType 'Y' to load an existing game save (or any other character to continue): ").upper()
 
     if should_load_game == "Y":
-        loaded_data = None
+        loaded_data = load_game.load_game()
 
         while not loaded_data:
             loaded_data = load_game.load_game()
 
-            try:
-                character = loaded_data[0]
-                rows = loaded_data[1]
-                columns = loaded_data[2]
-                week = loaded_data[5]
+        character = loaded_data[0]
+        rows = loaded_data[1]
+        columns = loaded_data[2]
+        week = loaded_data[5]
 
-            except TypeError:
-                print(f"\nUnable to load save data. Ensure that your save file is not corrupted.")
+        game_board = manage_board.make_board(rows=rows, columns=columns)
 
-            else:
-                game_board = manage_board.make_board(rows=rows, columns=columns)
+        for coordinate in loaded_data[3]:
+            game_board[tuple(coordinate)] = "[\x1b[36m'L'\x1b[0m]"
 
-                for coordinate in loaded_data[3]:
-                    game_board[tuple(coordinate)] = "[\x1b[36m'L'\x1b[0m]"
+        for coordinate in loaded_data[4]:
+            game_board[tuple(coordinate)] = "[\x1b[31m'E'\x1b[0m]"
 
-                for coordinate in loaded_data[4]:
-                    game_board[tuple(coordinate)] = "[\x1b[31m'E'\x1b[0m]"
-
-                print(f"\nSave loaded. Welcome back to Pass the Class, {character['Name']}!")
+        print(f"\nSave loaded. Welcome back to Pass the Class, {character['Name']}!")
 
     else:
         rows = 5
@@ -75,8 +70,6 @@ def game():
 
             if guessing_game.guessing_game():
                 print(f"The locker opens! What would you like to take?", end=" ")
-                try_play_sound.try_play_sound(filename="./sounds/res.wav",
-                                              action="Sound of you finding a study resource")
                 character_level.apply_resource(character=character)
                 try_play_sound.try_play_sound(filename="./sounds/lev.wav",
                                               action="Sound of you upgrading yourself")
@@ -122,12 +115,11 @@ def game():
                       f"the course (Total Questions: {encountered_foe['Reeses']})!\n\n")
                 print(f"No escaping from this one...\n")
 
-                try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of a final exam")
+                try_play_sound.try_play_sound(filename="./sounds/boss.wav", action="Ominous sound of an exam")
 
                 if foe_combat.fight_foe(character=character, foe=encountered_foe):
                     print(f"You passed the class! See you in Term 2.")
-                    try_play_sound.try_play_sound(filename="./sounds/win.wav",
-                                                  action="Sound of you passing the Final exam")
+                    try_play_sound.try_play_sound(filename="./sounds/win.wav", action="Sound of you passing the exam")
                     break
 
             if manage_foes.check_for_foes():
@@ -142,8 +134,7 @@ def game():
 
                 if try_to_escape == "Y" and manage_foes.escape_from_foe(character=character):
                     print(f"Your excuse worked and you skip the deliverable! Woo!")
-                    try_play_sound.try_play_sound(filename="./sounds/woo.wav",
-                                                  action="Sound of cheering")
+                    try_play_sound.try_play_sound(filename="./sounds/woo.wav", action="Sound of cheering")
 
                 else:
                     print(f"Let's get to it, I guess...\n")
