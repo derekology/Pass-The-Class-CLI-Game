@@ -4,7 +4,8 @@ A01351415
 """
 
 
-from character_management import REESES_UPGRADE_AMOUNT, SMARTS_UPGRADE_AMOUNT, LUCK_UPGRADE_AMOUNT
+from character_management import UPGRADE_AMOUNTS
+from utilities import try_play_sound
 
 
 def calculate_character_level(character: dict) -> None:
@@ -39,7 +40,7 @@ def get_upgrade_choice() -> str:
 
     :postcondition: prompts for user's desired upgrade attribute as one of: "Reeses", "Smarts", or "Luck"
     :postcondition: re-issues prompt if user enters an invalid attribute
-    :return: the user's desired upgrade attribute as a string
+    :return: the user's desired upgrade attribute as one of "Reese", "Smarts", or "Luck" as a string
     """
     user_choice = input(f"Choose one of the following:\n\n"
                         f"(R) Reeses + 3\n(S) Smarts + 1\n(L) Luck + 1\n\nYour choice: ").capitalize()
@@ -47,7 +48,14 @@ def get_upgrade_choice() -> str:
     while user_choice not in ["Reeses", "Smarts", "Luck", "R", "S", "L"]:
         user_choice = input(f"Unknown choice. Please pick one of: Reeses, Smarts, or Luck: ").capitalize()
 
-    return user_choice
+    if user_choice in ["Reeses", "R"]:
+        return "Reeses"
+
+    elif user_choice in ["Smarts", "S"]:
+        return "Smarts"
+
+    else:
+        return "Luck"
 
 
 def apply_resource(character: dict) -> None:
