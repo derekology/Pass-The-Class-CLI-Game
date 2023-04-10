@@ -5,11 +5,11 @@ A01351415
 
 
 import random
-from board_management import manage_board, manage_locations
+from board_management import manage_board, manage_locations, guessing_game, check_for_special_tile
 from character_management import manage_character, character_movement, character_level
 from combat_management import manage_foes, foe_combat
 from save_management import save_game, load_game
-from utilities import try_play_sound, check_for_special_tile, guessing_game, read_game_intro
+from utilities import try_play_sound, read_game_intro
 from utilities import TITLE_SCREEN_ASCII, LOCKER_FOUND_ASCII, YOU_FAILED_ASCII, UPCOMING_DUE_DATE_ASCII, FINAL_ASCII
 
 
