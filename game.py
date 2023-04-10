@@ -58,35 +58,6 @@ def game():
 
     while manage_character.is_alive(character=character):
         character_level.calculate_character_level(character=character)
-
-        if check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
-            print(f"\n\n\n{LOCKER_FOUND_ASCII}")
-            print(f"\nYou find a locker! What's the combinations, though?", end=" ")
-
-            if guessing_game.guessing_game():
-                print(f"The locker opens! What would you like to take?", end=" ")
-                character_level.apply_resource(character=character)
-
-            else:
-                print(f"Incorrect combination. The secret is lost forever...")
-                try_play_sound.try_play_sound(filename="./sounds/wrong.wav", action="Sad sound effect")
-
-            game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
-
-        if [space for space in game_board.values()].count("[\x1b[36m'L'\x1b[0m]") == 0:
-            resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
-            game_board = manage_board.make_board(rows=rows, columns=columns)
-            manage_locations.find_special_tiles(board=game_board, character=character, resource_tiles=resource_count)
-            week += 1
-
-            print(f"\nYou finished a week of classes! Let's enjoy the weekend...")
-
-            should_save_game = input(f"\nType 'Y' to save your game (or any other character to continue): ").upper()
-            if should_save_game == "Y":
-                save_game.save_game(character=character, board=game_board, week=week)
-
-            print(f"\nJokes... what is a weekend anyways? Let's move onto week {week}...")
-
         manage_locations.locate_character(board=game_board, character=character)
         print(f"\n\n\n")
         manage_board.draw_board(board=game_board, columns=columns)
@@ -96,7 +67,7 @@ def game():
         direction = character_movement.get_user_choice()
         valid_move = character_movement.validate_move(board=game_board, character=character, direction=direction)
 
-        if manage_character.is_alive(character=character) and valid_move:
+        if valid_move:
             game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
             character_movement.move_character(character=character, direction=direction)
 
@@ -113,6 +84,20 @@ def game():
                     print(f"You passed the class! See you in Term 2.")
                     try_play_sound.try_play_sound(filename="./sounds/win.wav", action="Sound of you passing the exam")
                     break
+
+            elif check_for_special_tile.check_for_special_tile(board=game_board, character=character, boss=False):
+                print(f"\n\n\n{LOCKER_FOUND_ASCII}")
+                print(f"\nYou find a locker! What's the combinations, though?", end=" ")
+
+                if guessing_game.guessing_game():
+                    print(f"The locker opens! What would you like to take?", end=" ")
+                    character_level.apply_resource(character=character)
+
+                else:
+                    print(f"Incorrect combination. The secret is lost forever...")
+                    try_play_sound.try_play_sound(filename="./sounds/wrong.wav", action="Sad sound effect")
+
+                game_board[(character["X-coordinate"], character["Y-coordinate"])] = "[   ]"
 
             elif manage_foes.check_for_foes():
                 encountered_foe = manage_foes.create_foe(character=character, boss=False)
@@ -136,6 +121,21 @@ def game():
 
             else:
                 print("\nThings are strangely calm as you go about your day...")
+
+            if [space for space in game_board.values()].count("[\x1b[36m'L'\x1b[0m]") == 0:
+                resource_count = max(0, 4 - character["Level"]) + random.randint(1, 2)
+                game_board = manage_board.make_board(rows=rows, columns=columns)
+                manage_locations.find_special_tiles(board=game_board, character=character,
+                                                    resource_tiles=resource_count)
+                week += 1
+
+                print(f"\nYou finished a week of classes! Let's enjoy the weekend...")
+
+                should_save_game = input(f"\nType 'Y' to save your game (or any other character to continue): ").upper()
+                if should_save_game == "Y":
+                    save_game.save_game(character=character, board=game_board, week=week)
+
+                print(f"\nJokes... what is a weekend anyways? Let's move onto week {week}...")
 
         else:
             print(f"You cannot go that way.")
