@@ -6,11 +6,11 @@ A01351415
 
 from unittest import TestCase
 from unittest.mock import patch
+import io
 from character_management.character_level import apply_resource, get_upgrade_choice
 
 
 class TestApplyResource(TestCase):
-    
     def test_apply_resource_with_non_dictionary_character(self):
         test_character = "String"
         with self.assertRaises(TypeError):
@@ -181,3 +181,31 @@ class TestApplyResource(TestCase):
         expected = {"Reeses": 0, "Smarts": 0, "Luck": 1}
         actual = test_character
         self.assertEqual(expected, actual)
+
+    @patch("builtins.input", side_effect=["Reeses"])
+    @patch("sys.stdout", new_callable=io.StringIO)
+    def test_apply_resource_with_reese_upgrade_check_printed_string(self, mock_output, _):
+        test_character = {"Reeses": 0, "Smarts": 0, "Luck": 0}
+        apply_resource(character=test_character)
+        expected = "Sound of you upgrading yourself"
+        actual = mock_output.getvalue()
+        self.assertIn(expected, actual)
+
+    @patch("builtins.input", side_effect=["Smarts"])
+    @patch("sys.stdout", new_callable=io.StringIO)
+    def test_apply_resource_with_smarts_upgrade_check_printed_string(self, mock_output, _):
+        test_character = {"Reeses": 0, "Smarts": 0, "Luck": 0}
+        apply_resource(character=test_character)
+        expected = "Sound of you upgrading yourself"
+        actual = mock_output.getvalue()
+        self.assertIn(expected, actual)
+
+    @patch('builtins.input', side_effect=["l"])
+    @patch("sys.stdout", new_callable=io.StringIO)
+    def test_apply_resource_with_luck_upgrade_check_printed_string(self, mock_output, _):
+        get_upgrade_choice.return_value = 'Luck'
+        test_character = {"Reeses": 0, "Smarts": 0, "Luck": 0}
+        apply_resource(character=test_character)
+        expected = "Sound of you upgrading yourself"
+        actual = mock_output.getvalue()
+        self.assertIn(expected, actual)
