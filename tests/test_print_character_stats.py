@@ -90,7 +90,7 @@ class TestPrintCharacterStats(TestCase):
     def test_print_character_stats_with_all_zero_levels(self, mock_print):
         test_character = {"Name": "Test Character", "Level": 0, "Reeses": 0, "Smarts": 0, "Luck": 0}
         print_character_stats(character=test_character)
-        expected = "Test Character (Level 0)\nReeses: 0\nSmarts: 0\nLuck:0\n"
+        expected = "Test Character (Level 0)\nReeses: 0\nSmarts: 0\nLuck: 0\n"
         actual = mock_print.getvalue()
         self.assertIn(expected, actual)
 
@@ -98,7 +98,7 @@ class TestPrintCharacterStats(TestCase):
     def test_print_character_stats_with_all_one_levels(self, mock_print):
         test_character = {"Name": "Test Character", "Level": 1, "Reeses": 1, "Smarts": 1, "Luck": 1}
         print_character_stats(character=test_character)
-        expected = "Test Character (Level 1)\nReeses: 1\nSmarts: 1\nLuck:1\n"
+        expected = "Test Character (Level 1)\nReeses: 1\nSmarts: 1\nLuck: 1\n"
         actual = mock_print.getvalue()
         self.assertIn(expected, actual)
 
@@ -106,7 +106,7 @@ class TestPrintCharacterStats(TestCase):
     def test_print_character_stats_with_positive_levels(self, mock_print):
         test_character = {"Name": "Test Character", "Level": 10, "Reeses": 10, "Smarts": 10, "Luck": 10}
         print_character_stats(character=test_character)
-        expected = "Test Character (Level 10)\nReeses: 10\nSmarts: 10\nLuck:10\n"
+        expected = "Test Character (Level 10)\nReeses: 10\nSmarts: 10\nLuck: 10\n"
         actual = mock_print.getvalue()
         self.assertIn(expected, actual)
 
@@ -114,6 +114,6 @@ class TestPrintCharacterStats(TestCase):
     def test_print_character_stats_with_mixed_levels(self, mock_print):
         test_character = {"Name": "Test Character", "Level": 0, "Reeses": 5, "Smarts": 10, "Luck": 15}
         print_character_stats(character=test_character)
-        expected = "Test Character (Level 0)\nReeses: 5\nSmarts: 10\nLuck:15\n"
+        expected = "Test Character (Level 0)\nReeses: 5\nSmarts: 10\nLuck: 15\n"
         actual = mock_print.getvalue()
         self.assertIn(expected, actual)
