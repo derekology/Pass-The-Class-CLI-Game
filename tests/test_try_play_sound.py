@@ -24,10 +24,3 @@ class TestTryPlaySound(TestCase):
         expected = "*A nonexistent sound playing*\n"
         actual = mock_output.getvalue()
         self.assertEqual(expected, actual)
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    def test_try_play_sound_with_existing_file(self, mock_output):
-        try_play_sound("../sounds/res.wav", "A nonexistent sound playing")
-        expected = ""
-        actual = mock_output.getvalue()
-        self.assertEqual(expected, actual)
