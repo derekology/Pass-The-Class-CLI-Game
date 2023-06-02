@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 def check_for_special_tile(board: dict, character: dict, boss: bool = False) -> bool:
     """
     Check if character's current location contains a resource.

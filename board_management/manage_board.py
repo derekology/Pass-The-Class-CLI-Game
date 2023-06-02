@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from board_management import MIN_ROWS, MIN_COLUMNS
 
 

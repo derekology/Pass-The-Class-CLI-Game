@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from unittest import TestCase
 from unittest.mock import patch
 from combat_management.foe_combat import calculate_damage

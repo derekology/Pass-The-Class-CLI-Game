@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from unittest import TestCase
 from character_management.character_level import calculate_character_level
 

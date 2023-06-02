@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from unittest import TestCase
 from board_management.manage_board import draw_board
 from unittest.mock import patch

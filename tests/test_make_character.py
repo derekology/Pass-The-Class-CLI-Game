@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from unittest import TestCase
 from unittest.mock import patch
 from character_management.manage_character import make_character

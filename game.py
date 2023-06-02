@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 import random
 from board_management import manage_board, manage_locations, guessing_game, check_for_special_tile
 from character_management import manage_character, character_movement, character_level

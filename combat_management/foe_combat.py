@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 import random
 import itertools
 from utilities import try_play_sound

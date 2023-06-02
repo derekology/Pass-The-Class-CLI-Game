@@ -1,9 +1,3 @@
-"""
-Derek Woo
-A01351415
-"""
-
-
 from character_management import UPGRADE_AMOUNTS
 from utilities import try_play_sound
 
