@@ -1,39 +1,52 @@
-# 1510-Assignment-04
+# Pass The Class
 
-Every program needs a README.md
+Pass The Class is a command-line interface (CLI) game written in Python. It was created as a 4-week school project and is designed to simulate the experience of a student trying to pass their class. The game revolves around completing deliverables and passing a final exam.
 
-This is written in markdown. Read about markdown here: [markdowncheatsheet](https://www.markdownguide.org/cheat-sheet/)
+Along the way, you can explore the game world to find lockers, and potentially discover valuable items like Reese's candies that restore energy, smarts, or luck. However, you can only obtain these items if you correctly guess the lock combination.
 
-## Your name:
-Derek Woo
+## How to Play
 
-## Your student number:
-A01351415
+1. Clone the repository locally using the following command:
+```
+git clone https://github.com/derekology/Pass-The-Class-CLI-Game.git
+```
 
-## Your GitHub account ID:
-derekology
+2. Ensure you have Python 3.11 or higher installed on your system.
 
-## Any important comments you'd like to make about your work:
-Hi Chris - because random luck plays a significant part in the success or failure of the user, I have added two save games as a shortcut for testing:
-* Derek.save - will beat the Final Exam with ease
-* Level3.save - *should* beat the Final Exam with relative ease
+3. Sync the package requirements by running the following command in the project directory:
+```
+pip install -r requirements.txt
+```
 
-## Required Elements
-| Requirements                                                                                                                                          | Module/Line                                       |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
-| (a) use of immutable data structures like tuples to minimize unnecessary mutability                                                                   | combat_management.manage_foes.py - Line 51        |
-| (b) use of mutable data structures like lists and dictionaries in a thoughtful and correct manner, i.e., no unnecessary looping through dictionaries  | character_management.manage_character - Line 24   |
-| (c) thoughtful use of exceptions and exception handling that prevents the program from crashing                                                       | game.py - Line 53                                 |
-| (d) minimized scope and lifetime of all variables and objects                                                                                         | save_management.load_game - Line 25               |
-| (e) decomposition of your idea into a collection of small, atomic, independent, and reusable functions                                                | utilities.try_play_sound.py - Line 11             |
-| (f) simple flat code that is easy to understand                                                                                                       | character_management.character_level - Line 64    |
-| (g) demonstration of an understanding of how comprehensions work through the meaningful and correct use of one or more list/dictionary comprehensions | board_management.manage_board - Line 49           |
-| (h) selection using if-statements                                                                                                                     | character_management.character_level - Line 54    |
-| (i) repetition using the for-loop and/or the while loop where it makes sense but not excessively                                                      | board_management.manage_board - Line 51           |
-| (j) use of the membership operator where it makes sense                                                                                               | character_management.character_movement - Line 26 |
-| (k) appropriate use of the the range function                                                                                                         | board_management.guessing_game - Line 25          |
-| (l) thoughtful and meaningful use of one or more functions from itertools                                                                             | combat_management.foe_combat - Line 79            |
-| (m) the random module                                                                                                                                 | board_management.manage_locations - Line 51       |
-| (n) function annotations                                                                                                                              | character_management.character_level - Line 11    |
-| (o) doctests and/or unit tests for every single function (that is, every function needs doctests or<br>unit tests or doctests and unit tests)         | character_management.character_movement - Line 87 |
-| (p) ALL output must be formatted using f-strings and/or str.format and/or %-formatting                                                                | character_management.manage_character - Line 105  |
+4. To start the game, run the following command:
+```
+python game.py
+```
+
+5. The game controls are as follows:
+   - Use the **W** key to move **up**.
+   - Use the **A** key to move **left**.
+   - Use the **S** key to move **down**.
+   - Use the **D** key to move **right**.
+   - You may also need to input numbers at certain points in the game.
+
+6. The game is best played in the PyCharm terminal due to its support for color codes. Note that the Windows 10 PowerShell or Command Prompt may not work as expected for this reason.
+
+7. The game features a save game feature, allowing you to save your progress locally once completing a level.
+
+## Requirements
+
+The following requirements must be met to play or work on this project:
+
+- Python 3.11 or higher
+- Git
+- Terminal or command-line interface
+
+## Contribution
+
+Contributions to Pass The Class CLI Game are welcome! If you have any ideas, bug fixes, or improvements, feel free to submit a pull request. Please ensure that your changes align with the project's coding style and guidelines.
+
+If you encounter any issues or have suggestions for new features, you can submit them using the project's [issue tracker](https://github.com/derekology/Pass-The-Class-CLI-Game/issues).
+
+## Contact
+If you have any questions about this project, please feel free to reach out to me at me@derekw.co.
